@@ -6,8 +6,4 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/cool', function(req, res, next) {
-  res.render('challenge');
-});
-
 module.exports = router;
