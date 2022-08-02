@@ -11,12 +11,20 @@ export default function CreateTodo() {
     title: "",
     description: "",
     category: "",
-    tag: "",
+    tag: [],
     status: "Unfinished",
-    priority: "",
+    priority: "None",
     date: null,
 		time: null
   });
+	//create date and time in arrays to be able to add and delete as needed
+	const [dateButton, setDateButton] = useState([
+		<button key="dateButton" id="dateButton" type="button" onClick={(e) => dateClicked(e)} className="dateAdd">Add Date</button>
+	]);
+	const [timeButton, setTimeButton] = useState([]);
+	const [date, setDate] = useState([]);
+	const [time, setTime] = useState([]);
+	const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   //Get list of all tags to use for component
@@ -45,15 +53,113 @@ export default function CreateTodo() {
       return { ...prev, ...value };
     });
   }
+
+	//put all of this code into another component later
+	function addDate() {
+		setDate([
+			<div className="form-group" key="dateInput">
+				<input 
+					type="date" 
+					id="dateInput" 
+					name="date"
+					onChange={(e) => updateTodo({ date: e.target.value })}
+					min={new Date().toISOString().substring(0,10)}
+					value={new Date().toISOString().substring(0,10)}
+				/>
+			</div>
+		]);
+	}
+
+	function removeDate() {
+		setDate([]);
+	}
+
+	function addTime() {
+		setTime([
+			<div className="form-group" key="timeInput">
+				<input 
+					type="time" 
+					id="timeInput" 
+					name="time"
+					onChange={(e) => updateTodo({ time: e.target.value })}
+					min={new Date().toISOString().substring(11,16)}
+					value={new Date().toISOString().substring(11,16)}
+				/>
+			</div>
+		]);
+	}
+
+	function removeTime() {
+		setTime([]);
+	}
+
+	function dateClicked(e) {
+		if (e.target.className === 'dateAdd') {
+			addDate();
+			setDateButton([
+				<button key="dateButton" id="dateButton" type="button" onClick={(e) => dateClicked(e)} className="dateRemove">Remove Date</button>
+			]);
+			setTimeButton([
+				<button type="button" key="timeButton" id="timeButton" className="timeAdd" onClick={(e) => timeClicked(e)}>Add Time</button>
+			]);
+		} else if (e.target.className === 'dateRemove') {
+			removeDate();
+			setDateButton([
+				<button key="dateButton" id="dateButton" type="button" onClick={(e) => dateClicked(e)} className="dateAdd">Add Date</button>
+			]);
+			setTimeButton([]);
+		}
+	}
+
+	function timeClicked(e) {
+		if (e.target.className === 'timeAdd') {
+			addTime();
+			setTimeButton([
+				<button type="button" key="timeButton" id="timeButton"  className="timeRemove" onClick={(e) => timeClicked(e)}>Remove Time</button>
+			]);
+		} else if (e.target.className === 'timeRemove') {
+			removeTime();
+			setTimeButton([
+				<button type="button" key="timeButton" id="timeButton"  className="timeAdd" onClick={(e) => timeClicked(e)}>Add Time</button>
+			]);
+		}
+	}
   
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
+
+		let validateErrors = [];
+		let invalid = false;
+
+		//make into function later
+		if (todo.title.length === 0) {
+			validateErrors['title'] = 'Title must not be empty!';
+			invalid = true;
+		};
+		if (document.getElementById('dateInput')) {
+			if (document.getElementById('dateButton').className === 'dateRemove') {
+				if (document.getElementById('dateInput').value === "") {
+					validateErrors['date'] = 'Date must not be blank or incomplete!';
+					invalid = true;
+				}
+			} 
+			if (document.getElementById('timeButton').className === 'timeRemove') {
+				if (document.getElementById('timeInput').value === "") {
+					validateErrors['time'] = 'Time must be filled correctly!';
+					invalid = true;
+				}
+			}
+		};
+		
+		setErrors(validateErrors)
+
+		if (invalid === true) { return; }
   
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newTodo = { ...todo };
-  
-    await fetch("http://localhost:9000/todo/create", {
+		
+    await fetch("http://localhost:5000/todo/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,9 +170,10 @@ export default function CreateTodo() {
       window.alert(error);
       return;
     });
-  
-    setTodo({ title: "", description: "", category: "", tag: "",
-      status: "Unfinished", priority: "", date: null, time: null,});
+
+    setTodo({ title: "", description: "", category: "", tag: [],
+      status: "Unfinished", priority: "None", date: null, time: null,});
+		setErrors({});
     navigate("/");
   }
   
@@ -76,6 +183,7 @@ export default function CreateTodo() {
       <h3>Create New Todo</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
+					<p className="errorPara">{errors.title}</p>
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -97,25 +205,15 @@ export default function CreateTodo() {
         </div>
         <Checkboxes tags={tags} todo={todo} updateTodo={updateTodo} />
 				<Radios priorities={priorities} todo={todo} updateTodo={updateTodo} />
-				<div className="form-group">
-					<input 
-						type="date" 
-						id="date" 
-						name="date"
-						value={new Date().toISOString().substring(0,10)}
-						onChange={(e) => updateTodo({ date: e.target.value })}
-						min={new Date().toISOString().substring(0,10)}
-					/>
-				</div>
-				<div className="form-group">
-				<input 
-					type="time" 
-					id="time" 
-					name="time"
-					value={new Date().toISOString().substring(11,16)}
-					onChange={(e) => updateTodo({ time: e.target.value })}
-					min={new Date().toISOString().substring(11,16)}
-					/>
+				<div className="dateContainer">
+					<p className="errorPara" >{errors.date}</p>
+					{date}
+					<p className="errorPara">{errors.time}</p>
+					{time}
+					<div className="form-group">
+						{dateButton}
+						{timeButton}
+					</div>
 				</div>
         <div className="form-group">
           <input

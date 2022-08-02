@@ -50,13 +50,20 @@ tagRoutes.route("/tag/add").post(function (req, response) {
  
 // This section will help you update a tag by id.
 tagRoutes.route("/tag/update/:id").post(function (req, response) {
- let db_connect = dbo.getDb(); 
- let myquery = { _id: ObjectId( req.params.id )}; 
- let newvalues = {   
+  let db_connect = dbo.getDb(); 
+  let myquery = { _id: ObjectId( req.params.id )}; 
+  let newvalues = {   
    $set: {     
      name: req.body.name,
    }, 
-  }
+  };
+  db_connect
+   .collection("todos")
+   .updateOne(myquery, newvalues, function (err, res) {
+     if (err) throw err;
+     console.log("1 document updated");
+     response.json(res);
+   });
 });
  
 // This section will help you delete a tag

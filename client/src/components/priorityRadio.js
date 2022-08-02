@@ -8,14 +8,14 @@ export default function Radios(props) {
 				return <div className="form-check form-check-inline" key={priority}>
 					<input
 						className="form-check-input"
-						type="checkbox"
+						type="radio"
 						name="priority"
 						id={priority}
 						value={priority}
 						checked={todo.priority === priority}
 						onChange={(e) => updateTodo({ priority: e.target.value })}
 					/>
-					<label htmlFor="priority" className="form-check-label">{priority}</label>
+					<label htmlFor={priority} className="form-check-label">{priority}</label>
 			</div>
 			})}
 		</div>
