@@ -12,7 +12,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.4rem 3rem;
+  padding: 0.4rem 2rem;
   background-color: #0284c7;
 }
 nav .search-container {
@@ -81,17 +81,42 @@ nav .left-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 6rem;
-  justify-content: space-around;
+  justify-content: flex-start;
+  width: 12rem;
 }
 nav .left-nav .left-nav__title {
   margin: 0;
+  margin-left: 2rem;
   color: #fff;
 }
 nav .right-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 8rem;
+  width: 12rem;
   justify-content: space-around;
+  margin-left: 1rem;
+}
+nav .right-nav .profile {
+  margin-top: 0.1rem;
+  margin-left: 0.2rem;
+  cursor: pointer;
+}
+nav .right-nav .profile .profile__image {
+  border-radius: 100%;
+  border: 2px solid #e0f2fe;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media (max-width: 801px) {
+  nav {
+    padding: 0.4rem 1rem;
+  }
+  nav .left-nav {
+    width: 9rem;
+  }
+  nav .left-nav .left-nav__title {
+    margin-left: 1rem;
+  }
 }/*# sourceMappingURL=style.css.map */
