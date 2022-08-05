@@ -205,6 +205,7 @@ export default function CreateTodo() {
         </div>
         <Checkboxes tags={tags} todo={todo} updateTodo={updateTodo} />
 				<Radios priorities={priorities} todo={todo} updateTodo={updateTodo} />
+				{/*make this into a component when all others are finished*/}
 				<div className="dateContainer">
 					<p className="errorPara" >{errors.date}</p>
 					{date}
