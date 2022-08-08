@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/style.css'
+import '../styles/style.css';
  
 // We import NavLink to utilize the react router.
 import { NavLink } from "react-router-dom";

@@ -4,8 +4,10 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
  
 // We import all the components we need in our app
-import CreateTodo from "./components/createTodo";
 import Navbar from "./components/navbar";
+import Sidebar from "./components/sidebar";
+import TodoList from "./components/todos";
+import CreateTodo from "./components/createTodo";
  
 const App = () => {
   function mouseClick(e) {
@@ -24,12 +26,15 @@ const App = () => {
     }
   }
  return (
-  <div onClick={(e) => mouseClick(e)}>
+  <main onClick={(e) => mouseClick(e)}>
     <Navbar />
-    <Routes>
-      <Route exact path="/" element={<CreateTodo />} />
-    </Routes>
-  </div>
+    <div className="main-content">
+      <Sidebar />
+      <Routes>
+        <Route exact path="/" element={<TodoList />} />
+      </Routes>
+    </div>
+  </main>
  );
 };
  

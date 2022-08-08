@@ -13,8 +13,8 @@ const ObjectId = require("mongodb").ObjectId;
  
  
 // This section will help you get a list of all the todos.
-todoRoutes.route("/todo").get(function (req, res) {
- let db_connect = dbo.getDb("to_do_apps");
+todoRoutes.route("/todos").get(function (req, res) {
+ let db_connect = dbo.getDb("to_do_app");
  db_connect
    .collection("todos")
    .find({})
@@ -81,7 +81,7 @@ todoRoutes.route("/update/:id").post(function (req, response) {
 });
  
 // This section will help you delete a todo
-todoRoutes.route("/:id").delete((req, response) => {
+todoRoutes.route("/todo/:id").delete((req, response) => {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect.collection("todos").deleteOne(myquery, function (err, obj) {

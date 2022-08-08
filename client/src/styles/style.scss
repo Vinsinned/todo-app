@@ -4,6 +4,9 @@ Roboto, Oxygen-Sans, Ubuntu, Cantarell,
 $primary-color: #0284c7;
 $secondary-color: #e0f2fe;
 
+@use 'navbar';
+@use 'sidebar';
+
 @mixin flex() {
   display: flex;
 	justify-content: space-between;
@@ -14,113 +17,14 @@ $secondary-color: #e0f2fe;
 	color: #fff;
 	padding: 0.2rem;
 	cursor: pointer;
+	user-select: none;
 	&:hover {
 		background-color: #0369a1;
 		border-radius: 0.25rem;
 	}
 }
 
-nav {
+.main-content {
 	@include flex;
-	padding: 0.4rem 2rem;
-	background-color: $primary-color;
-	.search-container {
-		@include flex;
-		justify-content: flex-start;
-		width: 50%;
-		max-width: 25rem;
-		height: 2rem;
-		cursor: pointer;
-		border: none;
-		border-radius: 0.25rem;
-		background-color: $secondary-color; 
-		button {
-			border: none;
-			background-color: $secondary-color;
-			cursor: pointer;
-			margin-top: 0.1rem;
-			border-radius: 0.5rem;
-			span {
-				color: $primary-color;
-				padding: 0;
-				&:hover {
-					background-color: transparent;
-				}
-			}
-		}
-		.search-container__navbar-search {
-			width: 100%;
-			margin: 0;
-			margin-right: 0.5rem;
-			padding: 0.25rem;
-			cursor: pointer;
-			border: none;
-			background-color: $secondary-color;
-			outline: none;
-		}
-		.search-close {
-			color: $primary-color;
-			font-size: 1.25rem;
-			margin-right: 0.5rem;
-			display: none;
-			padding: 0;
-			&:hover {
-				background-color: transparent;
-			}
-		}
-		.show-close {
-			display: block;
-		}
-		&:hover {
-			background-color: #fff;
-			.search-container__navbar-search {
-				background-color: #fff;
-			}
-			button {
-				background-color: #fff;
-			}
-		}
-	}
-	.search-active {
-		background-color: #fff !important;
-	}
-	.left-nav {
-		@include flex;
-		justify-content: flex-start;
-		width: 12rem;
-		.left-nav__title {
-			margin: 0;
-			margin-left: 2rem;
-			color: #fff;
-		}
-	}
-	.right-nav {
-		@include flex;
-		width: 12rem;
-		justify-content: space-around;
-		margin-left: 1rem;
-		.profile {
-			margin-top: 0.1rem;
-			margin-left: 0.2rem;
-			cursor: pointer;
-			.profile__image {
-				border-radius: 100%;
-				border: 2px solid $secondary-color;
-				width: 1.5rem;
-				height: 1.5rem;
-			}
-		}
-	}
-}
-
-@media (max-width:801px) {
-	nav {
-		padding: 0.4rem 1rem;
-		.left-nav {
-			width: 9rem;
-			.left-nav__title {
-				margin-left: 1rem;
-			}
-		}
-	}
+	justify-content: flex-start;
 }
