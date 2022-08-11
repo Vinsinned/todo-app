@@ -7,6 +7,7 @@ app.use(cors());
 app.use(express.json());
 app.use(require("./routes/tag"));
 app.use(require("./routes/todo"));
+app.use(require('./routes/category'));
 
 const dbo = require("./MongooseConn");
 app.listen(port, () => {

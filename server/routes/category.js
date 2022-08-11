@@ -1,9 +1,9 @@
 const express = require("express");
  
-// tagRoute is an instance of the express router.
+// categoryRoutes is an instance of the express router.
 // We use it to define our routes.
-// The router will be added as a middleware and will take control of requests starting with path /tag.
-const tagRoutes = express.Router();
+// The router will be added as a middleware and will take control of requests starting with path /categories.
+const categoryRoutes = express.Router();
  
 // This will help us connect to the database
 const dbo = require("../MongooseConn.js");
@@ -13,10 +13,10 @@ const ObjectId = require("mongodb").ObjectId;
  
  
 // This section will help you get a list of all the records.
-tagRoutes.route("/tags").get(function (req, res) {
+categoryRoutes.route("/categories").get(function (req, res) {
  let db_connect = dbo.getDb("to_do_app");
  db_connect
-   .collection("tags")
+   .collection("categories")
    .find({})
    .toArray(function (err, result) {
      if (err) throw err;
@@ -24,32 +24,32 @@ tagRoutes.route("/tags").get(function (req, res) {
    });
 });
  
-// This section will help you get a single tag by id
-tagRoutes.route("/tags/:id").get(function (req, res) {
+// This section will help you get a single category by id
+categoryRoutes.route("/categories/:id").get(function (req, res) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId( req.params.id )};
  db_connect
-     .collection("tags")
+     .collection("categories")
      .findOne(myquery, function (err, result) {
        if (err) throw err;
        res.json(result);
      });
 });
  
-// This section will help you create a new tag.
-tagRoutes.route("/tags/add").post(function (req, response) {
+// This section will help you create a new category.
+categoryRoutes.route("/categories/add").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
    name: req.body.name,
  };
- db_connect.collection("tags").insertOne(myobj, function (err, res) {
+ db_connect.collection("categories").insertOne(myobj, function (err, res) {
    if (err) throw err;
    response.json(res);
  });
 });
  
-// This section will help you update a tag by id.
-tagRoutes.route("/tags/update/:id").post(function (req, response) {
+// This section will help you update a category by id.
+categoryRoutes.route("/categories/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb(); 
   let myquery = { _id: ObjectId( req.params.id )}; 
   let newvalues = {   
@@ -58,7 +58,7 @@ tagRoutes.route("/tags/update/:id").post(function (req, response) {
    }, 
   };
   db_connect
-   .collection("todos")
+   .collection("categories")
    .updateOne(myquery, newvalues, function (err, res) {
      if (err) throw err;
      console.log("1 document updated");
@@ -66,11 +66,11 @@ tagRoutes.route("/tags/update/:id").post(function (req, response) {
    });
 });
  
-// This section will help you delete a tag
-tagRoutes.route("/tags/:id").delete((req, response) => {
+// This section will help you delete a category
+categoryRoutes.route("/categories/:id").delete((req, response) => {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId( req.params.id )};
- db_connect.collection("tags").deleteOne(myquery, function (err, obj) {
+ db_connect.collection("categories").deleteOne(myquery, function (err, obj) {
    if (err) throw err;
    //Change this to be a notification maybe...
    console.log("1 document deleted");
@@ -78,4 +78,4 @@ tagRoutes.route("/tags/:id").delete((req, response) => {
  });
 });
  
-module.exports = tagRoutes;
+module.exports = categoryRoutes;

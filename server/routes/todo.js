@@ -25,7 +25,7 @@ todoRoutes.route("/todos").get(function (req, res) {
 });
  
 // This section will help you get a single todo by id
-todoRoutes.route("/todo/:id").get(function (req, res) {
+todoRoutes.route("/todos/:id").get(function (req, res) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect
@@ -37,7 +37,7 @@ todoRoutes.route("/todo/:id").get(function (req, res) {
 });
  
 // This section will help you create a new todo.
-todoRoutes.route("/todo/add").post(function (req, response) {
+todoRoutes.route("/todos/add").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
    title: req.body.title,
@@ -56,7 +56,7 @@ todoRoutes.route("/todo/add").post(function (req, response) {
 });
  
 // This section will help you update a todo by id.
-todoRoutes.route("/update/:id").post(function (req, response) {
+todoRoutes.route("/todos/update/:id").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  let newvalues = {
@@ -81,7 +81,7 @@ todoRoutes.route("/update/:id").post(function (req, response) {
 });
  
 // This section will help you delete a todo
-todoRoutes.route("/todo/:id").delete((req, response) => {
+todoRoutes.route("/todos/:id").delete((req, response) => {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect.collection("todos").deleteOne(myquery, function (err, obj) {

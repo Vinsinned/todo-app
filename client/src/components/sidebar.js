@@ -4,10 +4,50 @@ import '../styles/style.css';
 // We import NavLink to utilize the react router.
 import { NavLink } from "react-router-dom";
 
+const Category = (props) => (
+	<li className="category">
+		{props.category.name}
+	</li>
+ );
+
 export default function Sidebar() {
+	const [categories, setCategories] = useState([]);
+	let test=[];
+
+	useEffect(() => {
+		async function getCategories() {
+			const response = await fetch(`http://localhost:5000/categories/`);
+	
+			if (!response.ok) {
+				const message = `An error occurred: ${response.statusText}`;
+				window.alert(message);
+				return;
+			}
+	
+			const categories = await response.json();
+			setCategories(categories);
+		}
+	
+		getCategories();
+	
+		return;
+	}, [categories.length]);
+
 	function categoriesToggle() {
 		document.getElementsByClassName('categories__expand')[0].classList.toggle('categories--hide');
 		document.getElementsByClassName('categories__collapse')[0].classList.toggle('categories--hide')
+	}
+
+	function categoryList() {
+		return categories.map((category) => {
+			return (
+				<Category
+					category={category}
+					//key is not a prop, it is an actual key for React to differentiate changes
+					key={category._id}
+				/>
+			);
+		});
 	}
 	return (
 		<nav className="sidebar">
@@ -78,6 +118,7 @@ export default function Sidebar() {
 						</span>
 					</div>
 				</li>
+				{categoryList()}
 			</ul>
 		</nav>
 	);

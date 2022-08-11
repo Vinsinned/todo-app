@@ -30,7 +30,7 @@ export default function CreateTodo() {
   //Get list of all tags to use for component
   useEffect(() => {
     async function getTags() {
-			const response = await fetch(`http://localhost:5000/tag/`);
+			const response = await fetch(`http://localhost:5000/tags/`);
 	
 			if (!response.ok) {
 				const message = `An error occurred: ${response.statusText}`;
