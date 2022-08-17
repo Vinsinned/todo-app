@@ -1,115 +1,157 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import Colors from "./colorForm";
  
-export default function Create() {
- const [form, setForm] = useState({
-   name: "",
-   position: "",
-   level: "",
- });
- const navigate = useNavigate();
+export default function CreateCategory() {
+	const colors = {
+		'Burnt Sienna': '#EF5350',
+		'French Rose': '#EC407A',
+		'Amethyst': '#AB47BC',
+		'Fuchsia Blue': '#7E57C2',
+		'Indigo': '#5C6BC0',
+		'Picton Blue': '#42A5F5',
+		'Dodger Blue': '#29B6F6',
+		'Scooter': '#26C6DA',
+		'Jungle Green': '#26A69A',
+		'Fern': '#66BB6A',
+		'Celery': '#9CCC65',
+		'Wattle': '#D4E157',
+		'Gorse': '#FFEE58',
+		'Sunglow': '#FFCA28',
+		'Sunshade': '#FFA726',
+		'Burning Orange': '#FF7043',
+		'Cement': '#8D6E63',
+		'Silver': '#BDBDBD',
+		'Regent Gray': '#78909C',
+		'Black': '#000'
+	}
+	const [category, setCategory] = useState({
+		name: "",
+		color: {
+			colorHex: "#78909C",
+			colorName: "Regent Gray",
+		},
+		favorite: false
+	});
+	const navigate = useNavigate();
  
- // These methods will update the state properties.
- function updateForm(value) {
-   return setForm((prev) => {
-     return { ...prev, ...value };
-   });
- }
+	// These methods will update the state properties.
+	function updateCategory(value) {
+		return setCategory((prev) => {
+			return { ...prev, ...value };
+		});
+	}
+
+	function colorClick(e) {
+		document.getElementsByClassName('color-dropdown')[0].classList.toggle('color-dropdown--show');
+		document.getElementsByClassName('category-form')[0].classList.toggle('category-form--height');
+	}
  
- // This function will handle the submission.
- async function onSubmit(e) {
-   e.preventDefault();
- 
-   // When a post request is sent to the create url, we'll add a new record to the database.
-   const newPerson = { ...form };
- 
-   await fetch("http://localhost:5000/record/add", {
-     method: "POST",
-     headers: {
-       "Content-Type": "application/json",
-     },
-     body: JSON.stringify(newPerson),
-   })
-   .catch(error => {
-     window.alert(error);
-     return;
-   });
- 
-   setForm({ name: "", position: "", level: "" });
-   navigate("/");
- }
+ 	// This function will handle the submission.
+	async function onSubmit(e) {
+		e.preventDefault();
+		
+		// When a post request is sent to the create url, we'll add a new category to the database.
+		const newCategory = { ...category };
+		
+		//fiux
+		await fetch("http://localhost:5000/categories/add", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(newCategory),
+		})
+		.catch(error => {
+			window.alert(error);
+			return;
+		});
+	
+		setCategory({ name: "", color: { colorHex: "#78909C", colorName: "Regent Gray"}, favorite: false});
+		navigate("/");
+	}
+
+	//check if color dropdown is clicked, if not, remove if it wasn't already
+	function blockClick(e) {
+		if (document.getElementsByClassName('color-dropdown')[0].classList.contains('color-dropdown--show') === true) {
+			if (e.target.className.includes('current-color') === false && e.target.className.includes('color-option') === false) {
+				document.getElementsByClassName('color-dropdown')[0].classList.remove('color-dropdown--show')
+				document.getElementsByClassName('category-form')[0].classList.remove('category-form--height');
+			}
+		}
+	}
+
+	//disable and enable togglebar depending on length whenever name input is changed
+	function nameChange(e) {
+		updateCategory({ name: e.target.value });
+		if (e.target.value.length !== 0) {
+			document.getElementsByClassName('category-footer__add')[0].disabled = false;
+		} else {
+			document.getElementsByClassName('category-footer__add')[0].disabled = true;
+		}
+	}
+
+	function toggleClick(e) {
+		document.getElementsByClassName('switch-input')[0].classList.toggle('toggle-on');
+		if (document.getElementsByClassName('switch-input')[0].className.includes('toggle-on')) {
+			updateCategory({ favorite: true });
+		} else {
+			updateCategory({ favorite: false });
+		}
+	}
  
  // This following section will display the form that takes the input from the user.
  return (
-   <div>
-     <h3>Create New Record</h3>
-     <form onSubmit={onSubmit}>
-       <div className="form-group">
-         <label htmlFor="name">Name</label>
-         <input
-           type="text"
-           className="form-control"
-           id="name"
-           value={form.name}
-           onChange={(e) => updateForm({ name: e.target.value })}
-         />
-       </div>
-       <div className="form-group">
-         <label htmlFor="position">Position</label>
-         <input
-           type="text"
-           className="form-control"
-           id="position"
-           value={form.position}
-           onChange={(e) => updateForm({ position: e.target.value })}
-         />
-       </div>
-       <div className="form-group">
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionIntern"
-             value="Intern"
-             checked={form.level === "Intern"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionIntern" className="form-check-label">Intern</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionJunior"
-             value="Junior"
-             checked={form.level === "Junior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionJunior" className="form-check-label">Junior</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionSenior"
-             value="Senior"
-             checked={form.level === "Senior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-         </div>
-       </div>
-       <div className="form-group">
-         <input
-           type="submit"
-           value="Create person"
-           className="btn btn-primary"
-         />
-       </div>
-     </form>
-   </div>
+	<div className="page-block" onClick={(e) => blockClick(e)}>
+		<div className="category-container">
+			<div className="category-create">
+				<div className="category-header">
+					<h3>Create New Category</h3>
+					<span className="material-symbols-outlined">
+						help
+					</span>
+				</div>
+				<form onSubmit={onSubmit}>
+					<div className="category-form">
+						<div className="form-group">
+							<label htmlFor="name">Name</label>
+							<input
+								type="text"
+								className="form-control form-field"
+								id="name"
+								value={category.name}
+								onChange={(e) => nameChange(e)}
+							/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="color">Color</label>
+							<button type="button" className="current-color form-control form-field" value={`${category.color.colorHex} ${category.color.colorName}`}
+								onClick={(e) => colorClick(e)}>
+								{/*updateCategory({color: {colorName: category.color, colorHex}})*/}
+								<span className="current-color__color" style={{backgroundColor: category.color.colorHex}} />
+								{category.color.colorName}
+							</button>
+							<Colors category={category} colors={colors} updateCategory={updateCategory} />
+						</div>
+						<div className="form-group toggle">
+							<label className="switch">
+								<input type="checkbox" className="switch-input" onClick={(e) => toggleClick(e)}/>
+								<span className="slider round"></span>
+							</label>
+							<p className="toggle-text">Add to favorites</p>
+						</div>
+					</div>
+					<div className="form-group category-footer">
+						<button type="button" className="category-footer__cancel category-footer__button">
+							Cancel
+						</button>
+						<button type="submit" className="category-footer__add category-footer__button" disabled onClick={(e) => onSubmit(e)}>
+							Add
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
  );
 }

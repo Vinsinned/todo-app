@@ -11,6 +11,9 @@
 	align-items: flex-start;
 	position: fixed;
 	top: 2.83625rem;
+	overflow-y: scroll;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
 	background-color: #f0f9ff;
 	.material-symbols-outlined {
 		color: #000;
@@ -109,4 +112,9 @@
 			display: block;
 		}
 	}
+}
+
+.sidebar::-webkit-scrollbar { /* WebKit */
+	width: 0;
+	height: 0;
 }

@@ -28,6 +28,7 @@ categoryRoutes.route("/categories").get(function (req, res) {
 categoryRoutes.route("/categories/:id").get(function (req, res) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId( req.params.id )};
+ console.log('a')
  db_connect
      .collection("categories")
      .findOne(myquery, function (err, result) {
@@ -41,6 +42,11 @@ categoryRoutes.route("/categories/add").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
    name: req.body.name,
+   color: {
+    colorHex: req.body.color.colorHex,
+    colorName: req.body.color.colorName
+   },
+   favorite: req.body.favorite
  };
  db_connect.collection("categories").insertOne(myobj, function (err, res) {
    if (err) throw err;

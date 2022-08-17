@@ -8,6 +8,7 @@ import Navbar from "./components/navbar";
 import Sidebar from "./components/sidebar";
 import TodoList from "./components/todos";
 import CreateTodo from "./components/createTodo";
+import CreateCategory from "./components/createCategory";
  
 const App = () => {
   function mouseClick(e) {
@@ -27,12 +28,14 @@ const App = () => {
   }
  return (
   <main onClick={(e) => mouseClick(e)}>
-    <Navbar />
-    <div className="main-content">
-      <Sidebar />
-      <Routes>
-        <Route exact path="/" element={<TodoList />} />
-      </Routes>
+      <Navbar />
+      <div className="main-content">
+        <Sidebar />
+        <div className="route">
+          <Routes>
+            <Route exact path="/" element={<CreateCategory />}/>
+          </Routes>
+      </div>
     </div>
   </main>
  );

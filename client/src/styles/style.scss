@@ -1,11 +1,13 @@
 $font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI",
-Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 "Helvetica Neue", sans-serif;
 $primary-color: #0284c7;
 $secondary-color: #e0f2fe;
 
 @use 'navbar';
 @use 'sidebar';
+@use 'colorForm';
+@use 'slider';
 
 @mixin flex() {
   display: flex;
@@ -27,4 +29,20 @@ $secondary-color: #e0f2fe;
 .main-content {
 	@include flex;
 	justify-content: flex-start;
+	font-family: $font-stack;
+}
+
+.route {
+	margin-left: 17rem;
+	width: 100%;	
+}
+
+.page-block {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: rgb(#000, 0.5);
 }
