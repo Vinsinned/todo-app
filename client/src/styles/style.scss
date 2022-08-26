@@ -8,6 +8,11 @@ $secondary-color: #e0f2fe;
 @use 'sidebar';
 @use 'colorForm';
 @use 'slider';
+@use 'todoForm';
+@use 'priority';
+@use 'tag';
+@use 'dateForm';
+@use 'timePicker';
 
 @mixin flex() {
   display: flex;

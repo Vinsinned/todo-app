@@ -6,11 +6,11 @@ export default function Checkboxes(props) {
 		if (e.target.checked === true) {
 			updateTodo({ tag: [...todo.tag, e.target.value] });
 		} else if (e.target.checked === false) {
-			updateTodo({tag: todo.tag.filter(value => value != e.target.value)})
+			updateTodo({tag: todo.tag.filter(value => value !== e.target.value)})
 		}
 	}
 	return (
-		<div className="form-group">
+		<div className="form-group tag-form">
 			{tags.map((tag) => {
 				return <div className="form-check form-check-inline" key={tag._id}>
 					<input

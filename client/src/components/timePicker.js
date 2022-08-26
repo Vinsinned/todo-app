@@ -1,0 +1,26 @@
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import '../styles/style.css';
+
+export default function ResponsiveTimePicker(props) {
+  const { todo, updateTodo } = props;
+  const [value, setValue] = React.useState(new Date());
+
+  function timePickerClick(value) {
+    setValue(value);
+    updateTodo({ time: value })
+  }
+
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <TimePicker
+          value={value}
+          onChange={(value) => timePickerClick(value)}
+          renderInput={(params) => <TextField {...params} />}
+        />
+    </LocalizationProvider>
+  );
+}

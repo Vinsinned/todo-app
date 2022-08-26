@@ -12,8 +12,8 @@ import CreateCategory from "./components/createCategory";
  
 const App = () => {
   function mouseClick(e) {
-    if (e.target.className.includes('search-container') || e.target.className.includes('search-container__search-icon') ||
-     e.target.className.includes('search-container__navbar-search')) {
+    if (e.target.classList.contains('search-container') || e.target.classList.contains('search-container__search-icon') ||
+     e.target.classList.contains('search-container__navbar-search')) {
       document.getElementsByClassName('search-close')[0].classList.add('show-close');
       document.getElementsByClassName('search-container')[0].classList.add('search-active');
       document.getElementsByClassName('search-container__navbar-search')[0].classList.add('search-active');
@@ -33,7 +33,7 @@ const App = () => {
         <Sidebar />
         <div className="route">
           <Routes>
-            <Route exact path="/" element={<CreateCategory />}/>
+            <Route exact path="/" element={<CreateTodo />}/>
           </Routes>
       </div>
     </div>

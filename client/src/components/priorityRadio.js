@@ -3,7 +3,7 @@ import React from "react";
 export default function Radios(props) {
 	const {priorities, todo, updateTodo} = props;
 	return (
-		<div className="form-group">
+		<div className="form-group priority-form">
 			{priorities.map((priority) => {
 				return <div className="form-check form-check-inline" key={priority}>
 					<input
