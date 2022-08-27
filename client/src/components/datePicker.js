@@ -49,6 +49,7 @@ function dateClicked(e) {
 			<button key="dateButton" id="dateButton" type="button" onClick={(e) => dateClicked(e)} className="dateAdd date-button"><span className="material-symbols-outlined">event</span>Add Date</button>
 		]);
 		setTimeButton([]);
+		document.getElementsByClassName('css-1u3bzj6-MuiFormControl-root-MuiTextField-root')[0].classList.remove('time-show');
 		updateTodo({ date: null });
 	}
 }
