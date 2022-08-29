@@ -572,6 +572,7 @@ nav .right-nav .profile .profile__image {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 6.4rem;
 }
 .tvdo-page .todo-form .todo-footer .material-symbols-outlined {
   color: #000;
@@ -589,8 +590,64 @@ nav .right-nav .profile .profile__image {
   display: none;
 }
 
+.tag-button .todo-sell-button {
+  position: relative;
+  top: 0.05rem;
+}
+.tag-button .todo-sell-button--clicked {
+  background-color: #ddd;
+  border-radius: 0.25rem;
+}
 .tag-button .tag-form {
-  display: none;
+  /*display: none;*/
+  position: absolute;
+  left: 40.5625rem;
+  top: 13.6rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 0.8125rem;
+  width: 17.1875rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+.tag-button .tag-form .tag-search {
+  width: 100%;
+  padding: 0.25rem 0.625rem;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  line-height: 1.5rem;
+}
+.tag-button .tag-form .tag-name-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 0.25rem 0.625rem;
+  line-height: 1.5rem;
+}
+.tag-button .tag-form .tag-name-container .tag-flex-left {
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.tag-button .tag-form .tag-name-container .tag-flex-left .checkbox-sell-symbol {
+  margin-right: 0.625rem;
+  pointer-events: none;
+}
+.tag-button .tag-form .tag-name-container .tag-flex-left .tag-name-label {
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.tag-button .tag-form .tag-name-container:hover {
+  background-color: #f3f3f3;
+}
+.tag-button .tag-form--show {
+  display: block;
 }
 
 .react-datepicker__year-read-view--down-arrow,
@@ -1380,6 +1437,69 @@ nav .right-nav .profile .profile__image {
   font-size: 1.25rem !important;
 }
 
+/* Customize the label (the container) */
+.tag-checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Hide the browser's default checkbox */
+.tag-checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0.9rem;
+  width: 0.9rem;
+  border: 1px solid #000;
+  border-radius: 0.1rem;
+  background-color: transparent;
+}
+
+/* When the checkbox is checked, add a blue background */
+.tag-checkbox-container input:checked ~ .checkmark {
+  background-color: #808080;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.tag-checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.tag-checkbox-container .checkmark:after {
+  left: 4px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
 .material-symbols-outlined {
   color: #fff;
   padding: 0.2rem;
@@ -1415,4 +1535,19 @@ nav .right-nav .profile .profile__image {
   height: 100%;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tag-blocker {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  cursor: default;
+  display: none;
+}
+
+.tag-blocker--show {
+  display: block;
 }/*# sourceMappingURL=style.css.map */

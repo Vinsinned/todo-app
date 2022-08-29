@@ -1,5 +1,62 @@
+$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI",
+Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
+"Helvetica Neue", sans-serif;
+
 .tag-button {
+	.todo-sell-button {
+		position: relative;
+		top: 0.05rem
+	}
+	.todo-sell-button--clicked {
+		background-color: #ddd;
+		border-radius: 0.25rem;
+	}
 	.tag-form {
-		display: none;
+		/*display: none;*/
+		position: absolute;
+		left: 40.5625rem;
+		top: 13.6rem;
+		font-family: $font-stack;
+		font-size: 0.8125rem;
+		width: 17.1875rem;
+		border-radius: 0.25rem;
+		border: 1px solid #ddd;
+		cursor: pointer;
+		.tag-search {
+			width: 100%;
+			padding: 0.25rem 0.625rem;
+			border-top-left-radius: 0.25rem;
+			border-top-right-radius: 0.25rem;
+			border: none;
+			border-bottom: 1px solid #ddd;
+			line-height: 1.5rem;
+		}
+		.tag-name-container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: #fff;
+			padding: 0.25rem 0.625rem;
+			line-height: 1.5rem;
+			.tag-flex-left {
+				display: flex;
+				align-items: center;
+				pointer-events: none;
+				.checkbox-sell-symbol {
+					margin-right: 0.625rem;
+					pointer-events: none;
+				}
+				.tag-name-label {
+					pointer-events: none;
+					user-select: none;
+				}
+			}
+			&:hover {
+				background-color: #f3f3f3;
+			}
+		}
+	}
+	.tag-form--show {
+		display: block;
 	}
 }

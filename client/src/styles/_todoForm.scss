@@ -122,6 +122,7 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 			}
 			.footer-buttons {
 				@include flex();
+				width: 6.4rem;
 			}
 			.material-symbols-outlined {
 				color: #000;

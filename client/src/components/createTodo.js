@@ -52,6 +52,7 @@ export default function CreateTodo() {
   async function onSubmit(e) {
     e.preventDefault();
 
+		/*
 		let validateErrors = [];
 		let invalid = false;
 
@@ -78,11 +79,14 @@ export default function CreateTodo() {
 		setErrors(validateErrors)
 
 		if (invalid === true) { return; }
+
+		*/
   
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newTodo = { ...todo };
 		console.log(newTodo);
 		
+		/*
     await fetch("http://localhost:5000/todo/add", {
       method: "POST",
       headers: {
@@ -99,6 +103,7 @@ export default function CreateTodo() {
       status: "Unfinished", priority: "None", date: null, time: null,});
 		setErrors({});
     navigate("/");
+		*/
   }
   
   // This following section will display the todo that takes the input from the user.
@@ -133,12 +138,7 @@ export default function CreateTodo() {
 				<div className="todo-footer">
 					<DateForm todo={todo} updateTodo={updateTodo} />
 					<div className="footer-buttons">
-						<div className="tag-button">
-							<span className="material-symbols-outlined">
-								sell
-							</span>
-							<Checkboxes tags={tags} todo={todo} updateTodo={updateTodo} />
-						</div>
+						<Checkboxes tags={tags} todo={todo} updateTodo={updateTodo} />
 						<div className="priority-button">
 							<span className="material-symbols-outlined">
 								flag
@@ -152,13 +152,13 @@ export default function CreateTodo() {
 						</div>
 					</div>
 				</div>
-				<div className="form-group">
-					<input
-						type="submit"
-						value="Add Todo"
-						className="btn btn-primary"
-					/>
-				</div>
+					<div className="form-group">
+						<input
+							type="submit"
+							value="Add Todo"
+							className="btn btn-primary"
+						/>
+					</div>
       </form>
     </div>
   );
