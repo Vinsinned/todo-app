@@ -618,33 +618,68 @@ nav .right-nav .profile .profile__image {
   border: none;
   border-bottom: 1px solid #ddd;
   line-height: 1.5rem;
+  outline: none;
 }
-.tag-button .tag-form .tag-name-container {
+.tag-button .tag-form .tag-list-div {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 18.75rem;
+}
+.tag-button .tag-form .tag-name-container, .tag-button .tag-form .add-tag, .tag-button .tag-form .tag-not-found {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
   padding: 0.25rem 0.625rem;
   line-height: 1.5rem;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
 }
-.tag-button .tag-form .tag-name-container .tag-flex-left {
+.tag-button .tag-form .tag-name-container .tag-flex-left, .tag-button .tag-form .add-tag .tag-flex-left, .tag-button .tag-form .tag-not-found .tag-flex-left {
   display: flex;
   align-items: center;
   pointer-events: none;
 }
-.tag-button .tag-form .tag-name-container .tag-flex-left .checkbox-sell-symbol {
+.tag-button .tag-form .tag-name-container .tag-flex-left .checkbox-sell-symbol, .tag-button .tag-form .add-tag .tag-flex-left .checkbox-sell-symbol, .tag-button .tag-form .tag-not-found .tag-flex-left .checkbox-sell-symbol {
   margin-right: 0.625rem;
   pointer-events: none;
 }
-.tag-button .tag-form .tag-name-container .tag-flex-left .tag-name-label {
+.tag-button .tag-form .tag-name-container .tag-flex-left .tag-name-label, .tag-button .tag-form .add-tag .tag-flex-left .tag-name-label, .tag-button .tag-form .tag-not-found .tag-flex-left .tag-name-label {
   pointer-events: none;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
 }
-.tag-button .tag-form .tag-name-container:hover {
+.tag-button .tag-form .tag-name-container:hover, .tag-button .tag-form .add-tag:hover, .tag-button .tag-form .tag-not-found:hover {
   background-color: #f3f3f3;
+}
+.tag-button .tag-form .tag-not-found {
+  color: #555;
+  cursor: default;
+}
+.tag-button .tag-form .tag-not-found .add-tag-text {
+  cursor: text;
+}
+.tag-button .tag-form .tag-not-found:hover {
+  background-color: transparent;
+}
+.tag-button .tag-form .add-tag {
+  justify-content: flex-start;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+.tag-button .tag-form .add-tag span {
+  padding: 0 !important;
+  margin-right: 0.5rem;
+  pointer-events: none;
+}
+.tag-button .tag-form .add-tag span:hover {
+  background-color: transparent !important;
+}
+.tag-button .tag-form .add-tag .add-tag-text {
+  font-weight: bold;
+  pointer-events: none;
 }
 .tag-button .tag-form--show {
   display: block;

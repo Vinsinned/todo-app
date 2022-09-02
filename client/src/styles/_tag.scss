@@ -30,6 +30,12 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 			border: none;
 			border-bottom: 1px solid #ddd;
 			line-height: 1.5rem;
+			outline: none;
+		}
+		.tag-list-div {
+			overflow-y: scroll;
+			overflow-x: hidden;
+			max-height: 18.75rem;
 		}
 		.tag-name-container {
 			display: flex;
@@ -38,6 +44,8 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 			background-color: #fff;
 			padding: 0.25rem 0.625rem;
 			line-height: 1.5rem;
+			border-bottom-left-radius: 0.25rem;
+			border-bottom-right-radius: 0.25rem;
 			.tag-flex-left {
 				display: flex;
 				align-items: center;
@@ -53,6 +61,35 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 			}
 			&:hover {
 				background-color: #f3f3f3;
+			}
+		}
+		.tag-not-found {
+			@extend .tag-name-container;
+			color: #555;
+			cursor: default;
+			.add-tag-text {
+				cursor: text;
+			}
+			&:hover {
+				background-color: transparent;
+			}
+		}
+		.add-tag {
+			@extend .tag-name-container;
+			justify-content: flex-start;
+			border-bottom-left-radius: 0.25rem;
+			border-bottom-right-radius: 0.25rem;
+			span {
+				padding: 0 !important;
+				margin-right: 0.5rem;
+				pointer-events: none;
+				&:hover {
+					background-color: transparent !important;
+				}
+			}
+			.add-tag-text {
+				font-weight: bold;
+				pointer-events: none;
 			}
 		}
 	}

@@ -11,6 +11,16 @@ const dbo = require("../MongooseConn.js");
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
  
+tagRoutes.route("/tags/search").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  db_connect
+   .collection("tags")
+   .find({ name: { "$regex": req.query.name, "$options": "i"} })
+   .toArray(function (err, result) {
+     if (err) throw err;
+     res.json(result);
+   });
+ });
  
 // This section will help you get a list of all the records.
 tagRoutes.route("/tags").get(function (req, res) {
