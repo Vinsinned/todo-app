@@ -33,6 +33,10 @@ const App = () => {
       document.getElementsByClassName('todo-sell-button')[0].classList.remove('todo-sell-button--clicked');
       document.getElementsByClassName('tag-search')[0].value = "";
     }
+    if (!e.target.classList.contains('priority-clickable-button')) {
+      document.getElementsByClassName('priority-clickable-button')[0].classList.remove('priority-clickable-button--clicked');
+		document.getElementsByClassName('priority-blocker')[0].classList.remove('priority-blocker--show');
+    }
   }
  return (
   <main onClick={(e) => mouseClick(e)}>

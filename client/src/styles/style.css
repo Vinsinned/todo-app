@@ -459,28 +459,30 @@ nav .right-nav .profile .profile__image {
   display: flex;
   flex-direction: column;
   background-color: #fff;
+  cursor: text;
+}
+.tvdo-page .todo-form .main-todo-form {
   border: 1px solid #ddd;
   border-radius: 0.625rem;
   padding: 0.625rem 0.625rem 0;
-  cursor: text;
 }
-.tvdo-page .todo-form .text-inputs {
+.tvdo-page .todo-form .main-todo-form .text-inputs {
   margin-bottom: 0.625rem;
   max-height: 200px;
   overflow-y: auto;
   overflow-x: hidden;
 }
-.tvdo-page .todo-form .text-inputs .todo-title {
+.tvdo-page .todo-form .main-todo-form .text-inputs .todo-title {
   width: 100%;
   border: none;
   font-weight: 500;
   font-size: 0.9rem;
   line-height: 1.3125rem;
 }
-.tvdo-page .todo-form .text-inputs .todo-title:focus {
+.tvdo-page .todo-form .main-todo-form .text-inputs .todo-title:focus {
   outline: none;
 }
-.tvdo-page .todo-form .text-inputs .todo-description {
+.tvdo-page .todo-form .main-todo-form .text-inputs .todo-description {
   width: 100%;
   border: none;
   height: 2.25rem;
@@ -491,22 +493,23 @@ nav .right-nav .profile .profile__image {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   color: grey;
 }
-.tvdo-page .todo-form .text-inputs .todo-description:focus {
+.tvdo-page .todo-form .main-todo-form .text-inputs .todo-description:focus {
   outline: none;
 }
-.tvdo-page .todo-form .todo-footer {
+.tvdo-page .todo-form .main-todo-form .todo-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   justify-content: space-between;
 }
-.tvdo-page .todo-form .todo-footer .date-group {
+.tvdo-page .todo-form .main-todo-form .todo-footer .date-group {
   display: flex;
   justify-content: space-between;
   align-items: center;
   justify-content: flex-start;
+  padding-bottom: 0.625rem;
 }
-.tvdo-page .todo-form .todo-footer .date-group .date-button {
+.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .date-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -521,23 +524,23 @@ nav .right-nav .profile .profile__image {
   color: #000;
   cursor: pointer;
 }
-.tvdo-page .todo-form .todo-footer .date-group .date-button:hover {
+.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .date-button:hover {
   border: 1px solid #212121;
 }
-.tvdo-page .todo-form .todo-footer .date-group .date-button .material-symbols-outlined {
+.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .date-button .material-symbols-outlined {
   color: #000;
   font-size: 1.2rem;
   margin-right: 0.25rem;
   padding: 0;
   pointer-events: none;
 }
-.tvdo-page .todo-form .todo-footer .date-group .date-button .material-symbols-outlined:hover {
+.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .date-button .material-symbols-outlined:hover {
   background-color: transparent;
 }
-.tvdo-page .todo-form .todo-footer .date-group .react-datepicker__input-container {
+.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .react-datepicker__input-container {
   display: none !important;
 }
-.tvdo-page .todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker {
+.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -552,46 +555,160 @@ nav .right-nav .profile .profile__image {
   color: #000;
   cursor: pointer;
 }
-.tvdo-page .todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker:hover {
+.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker:hover {
   border: 1px solid #212121;
 }
-.tvdo-page .todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker .material-symbols-outlined {
+.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker .material-symbols-outlined {
   color: #000;
   font-size: 1.2rem;
   margin-right: 0.25rem;
   padding: 0;
   pointer-events: none;
 }
-.tvdo-page .todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker .material-symbols-outlined:hover {
+.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker .material-symbols-outlined:hover {
   background-color: transparent;
 }
-.tvdo-page .todo-form .todo-footer .date-group .date-show {
+.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .date-show {
   display: inline-block !important;
 }
-.tvdo-page .todo-form .todo-footer .footer-buttons {
+.tvdo-page .todo-form .main-todo-form .todo-footer .footer-buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 6.4rem;
+  padding-bottom: 0.625rem;
 }
-.tvdo-page .todo-form .todo-footer .material-symbols-outlined {
+.tvdo-page .todo-form .main-todo-form .todo-footer .footer-buttons .question-button {
+  margin-bottom: 0.1rem;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .material-symbols-outlined {
   color: #000;
   padding: 0.1rem;
 }
-.tvdo-page .todo-form .todo-footer .material-symbols-outlined:hover {
+.tvdo-page .todo-form .main-todo-form .todo-footer .material-symbols-outlined:hover {
   background-color: #ddd;
+}
+.tvdo-page .todo-form .footer-todo-form {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+.tvdo-page .todo-form .footer-todo-form .footer-todo-button {
+  cursor: pointer;
+  background-color: #f5f5f5;
+  font-weight: bold;
+  border: none;
+  min-width: 4.25rem;
+  height: 2rem;
+  line-height: 2rem;
+  padding: 0 0.75rem;
+  border-radius: 0.25rem;
+  margin-left: 0.75rem;
+}
+.tvdo-page .todo-form .footer-todo-form .cancel-todo:hover {
+  background-color: #e5e5e5;
+}
+.tvdo-page .todo-form .footer-todo-form .add-todo {
+  color: #fff;
+  background-color: #db4c3f;
+}
+.tvdo-page .todo-form .footer-todo-form .add-todo:disabled {
+  background-color: rgba(219, 76, 63, 0.4);
+  cursor: not-allowed;
 }
 
 .errorPara {
   display: none;
 }
 
+.priority-button .priority-clickable-button {
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 0.1rem;
+}
+.priority-button .priority-clickable-button .flag-svg {
+  color: #363636;
+  pointer-events: none;
+}
+.priority-button .priority-clickable-button .high-color {
+  fill: #f50057;
+  color: #f50057 !important;
+}
+.priority-button .priority-clickable-button .medium-color {
+  fill: #1976d2;
+  color: #1976d2 !important;
+}
+.priority-button .priority-clickable-button .low-color {
+  fill: #43a047;
+  color: #43a047 !important;
+}
+.priority-button .priority-clickable-button:hover {
+  background-color: #ddd;
+}
+.priority-button .priority-clickable-button:hover .flag-svg {
+  stroke: #ddd;
+}
+.priority-button .priority-clickable-button--clicked {
+  background-color: #ddd;
+  border-radius: 0.25rem;
+  padding: 0.1rem;
+}
+.priority-button .priority-clickable-button--clicked .flag-svg {
+  stroke: #ddd;
+}
 .priority-button .priority-form {
-  display: none;
+  width: 17.1875rem;
+  position: absolute;
+  left: 42.1875rem;
+  top: 13.6rem;
+}
+.priority-button .priority-form ul {
+  padding: 0;
+  margin: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px 0rgba 0, 0, 0, 0.08;
+  background-color: #fff;
+  border-radius: 0.35rem;
+  max-height: 18.75rem;
+}
+.priority-button .priority-form ul li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.85rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+.priority-button .priority-form ul li .priority-svg {
+  pointer-events: none;
+}
+.priority-button .priority-form ul li .priority-option-text {
+  margin: 0 0.625rem;
+  pointer-events: none;
+}
+.priority-button .priority-form ul li .high-color {
+  fill: #f50057;
+  color: #f50057 !important;
+}
+.priority-button .priority-form ul li .medium-color {
+  fill: #1976d2;
+  color: #1976d2 !important;
+}
+.priority-button .priority-form ul li .low-color {
+  fill: #43a047;
+  color: #43a047 !important;
+}
+.priority-button .priority-form ul li .priority-check {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: auto;
+}
+.priority-button .priority-form ul li:hover {
+  background-color: #f3f3f3;
 }
 
 .tag-button .todo-sell-button {
-  position: relative;
   top: 0.05rem;
 }
 .tag-button .todo-sell-button--clicked {
@@ -1584,5 +1701,20 @@ nav .right-nav .profile .profile__image {
 }
 
 .tag-blocker--show {
+  display: block;
+}
+
+.priority-blocker {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  cursor: default;
+  display: none;
+}
+
+.priority-blocker--show {
   display: block;
 }/*# sourceMappingURL=style.css.map */

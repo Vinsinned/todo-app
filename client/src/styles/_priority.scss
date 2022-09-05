@@ -1,5 +1,92 @@
+$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI",
+Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
+"Helvetica Neue", sans-serif;
+
 .priority-button {
+	.priority-clickable-button {
+		cursor: pointer;
+		border-radius: 0.25rem;
+		padding: 0.1rem;
+		.flag-svg {
+			color: #363636;
+			pointer-events: none;
+		}
+		.high-color {
+			fill: #f50057;
+			color: #f50057 !important;
+		}
+		.medium-color {
+			fill: #1976d2;
+			color: #1976d2 !important;
+		}
+		.low-color {
+			fill: #43a047;
+			color: #43a047 !important;
+		}
+		&:hover {
+			background-color: #ddd;
+			.flag-svg {
+				stroke: #ddd;
+			}
+		}
+	}
+	.priority-clickable-button--clicked {
+		background-color: #ddd;
+		border-radius: 0.25rem;
+		padding: 0.1rem;
+		.flag-svg {
+			stroke: #ddd;
+		}
+	}
 	.priority-form {
-		display: none;
+		width: 17.1875rem;
+		position: absolute;
+		left: 42.1875rem;
+		top: 13.6rem;
+		ul {
+			padding: 0;
+			margin: 0;
+			border: 1px solid rgba(0,0,0,.1);
+			box-shadow: 0 2px 4px 0rgba(0,0,0,.08);
+			background-color: #fff;
+			border-radius: 0.35rem;
+			max-height: 18.75rem;
+			li {
+				list-style-type: none;
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+				padding: 0.25rem 0.625rem;
+				font-size: 0.85rem;
+				font-family: $font-stack;
+				.priority-svg {
+					pointer-events: none;
+				}
+				.priority-option-text {
+					margin: 0 0.625rem;
+					pointer-events: none;
+				}
+				.high-color {
+					fill: #f50057;
+					color: #f50057 !important;
+				}
+				.medium-color {
+					fill: #1976d2;
+					color: #1976d2 !important;
+				}
+				.low-color {
+					fill: #43a047;
+					color: #43a047 !important;
+				}
+				.priority-check {
+					font-size: 1rem;
+					font-weight: bold;
+					margin-left: auto;
+				}
+				&:hover {
+					background-color: #f3f3f3;
+				}
+			}
+		}
 	}
 }

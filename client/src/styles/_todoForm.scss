@@ -20,76 +20,49 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 		display: flex;
 		flex-direction: column;
 		background-color: #fff;
-		border: 1px solid #ddd;
-		border-radius: 0.625rem;
-		padding: 0.625rem 0.625rem 0;
 		cursor: text;
-		.text-inputs {
-			margin-bottom: 0.625rem;
-			max-height: 200px;
-			overflow-y: auto;
-			overflow-x: hidden;
-			.todo-title {
-				width: 100%;
-				border: none;
-				font-weight: 500;
-				font-size: 0.9rem;
-				line-height: 1.3125rem;
-				&:focus {
-					outline: none;
+		.main-todo-form {
+			border: 1px solid #ddd;
+			border-radius: 0.625rem;
+			padding: 0.625rem 0.625rem 0;
+			.text-inputs {
+				margin-bottom: 0.625rem;
+				max-height: 200px;
+				overflow-y: auto;
+				overflow-x: hidden;
+				.todo-title {
+					width: 100%;
+					border: none;
+					font-weight: 500;
+					font-size: 0.9rem;
+					line-height: 1.3125rem;
+					&:focus {
+						outline: none;
+					}
+				}
+				.todo-description {
+					width: 100%;
+					border: none;
+					height: 2.25rem;
+					margin-top: 0.5rem;
+					padding: 0.0625rem;
+					font-size: 0.85rem;
+					line-height: 1.125rem;
+					font-family: $font-stack;
+					color: grey;
+					&:focus {
+						outline: none;
+					}
 				}
 			}
-			.todo-description {
-				width: 100%;
-				border: none;
-				height: 2.25rem;
-				margin-top: 0.5rem;
-				padding: 0.0625rem;
-				font-size: 0.85rem;
-				line-height: 1.125rem;
-				font-family: $font-stack;
-				color: grey;
-				&:focus {
-					outline: none;
-				}
-			}
-		}
-		.todo-footer {
-			@include flex();
-			justify-content: space-between;
-			.date-group {
+			.todo-footer {
 				@include flex();
-				justify-content: flex-start;
-
-				.date-button {
+				justify-content: space-between;
+				.date-group {
 					@include flex();
-					background-color: transparent;
-					border: 1px solid #ccc;
-					border-radius: 0.25rem;
-					height: 1.75rem;
-					padding: 0 0.5rem;
-					margin-right: 0.5rem;
-					align-items: center;
-					font-size: 0.8125rem;
-					color: #000;
-					cursor: pointer;
-					&:hover {
-						border: 1px solid #212121;
-					}
-					.material-symbols-outlined {
-						color: #000;
-						font-size: 1.2rem;
-						margin-right: 0.25rem;
-						padding: 0;
-						pointer-events: none;
-						&:hover {
-							background-color: transparent;
-						}
-					}
-				}
-				.react-datepicker__input-container {
-					display: none !important;
-					.date-picker {
+					justify-content: flex-start;
+					padding-bottom: 0.625rem;
+					.date-button {
 						@include flex();
 						background-color: transparent;
 						border: 1px solid #ccc;
@@ -115,20 +88,83 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 							}
 						}
 					}
+					.react-datepicker__input-container {
+						display: none !important;
+						.date-picker {
+							@include flex();
+							background-color: transparent;
+							border: 1px solid #ccc;
+							border-radius: 0.25rem;
+							height: 1.75rem;
+							padding: 0 0.5rem;
+							margin-right: 0.5rem;
+							align-items: center;
+							font-size: 0.8125rem;
+							color: #000;
+							cursor: pointer;
+							&:hover {
+								border: 1px solid #212121;
+							}
+							.material-symbols-outlined {
+								color: #000;
+								font-size: 1.2rem;
+								margin-right: 0.25rem;
+								padding: 0;
+								pointer-events: none;
+								&:hover {
+									background-color: transparent;
+								}
+							}
+						}
+					}
+					.date-show {
+						display: inline-block !important;
+					}
 				}
-				.date-show {
-					display: inline-block !important;
+				.footer-buttons {
+					@include flex();
+					width: 6.4rem;
+					padding-bottom: 0.625rem;
+					.question-button {
+						margin-bottom: 0.1rem;
+					}
+				}
+				.material-symbols-outlined {
+					color: #000;
+					padding: 0.1rem;
+					&:hover {
+						background-color: #ddd;
+					}
 				}
 			}
-			.footer-buttons {
-				@include flex();
-				width: 6.4rem;
+		}
+		.footer-todo-form {
+			display: flex;
+			justify-content: flex-end;
+			margin-top: 0.5rem;
+			.footer-todo-button {
+				cursor: pointer;
+				background-color: #f5f5f5;
+				font-weight: bold;
+				border: none;
+				min-width: 4.25rem;
+				height: 2rem;
+				line-height: 2rem;
+				padding: 0 0.75rem;
+				border-radius: 0.25rem;
+				margin-left: 0.75rem;
 			}
-			.material-symbols-outlined {
-				color: #000;
-				padding: 0.1rem;
+			.cancel-todo {
 				&:hover {
-					background-color: #ddd;
+					background-color: #e5e5e5;
+				}
+			}
+			.add-todo {
+				color: #fff;
+				background-color: #db4c3f;
+				&:disabled {
+					background-color: rgba(#db4c3f, 0.4);
+					cursor: not-allowed;
 				}
 			}
 		}

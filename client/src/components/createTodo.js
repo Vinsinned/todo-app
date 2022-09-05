@@ -6,7 +6,7 @@ import DateForm from "./datePicker";
 
 //add props that links to category/parent of todo
 export default function CreateTodo() {
-	const priorities = ["High", "Medium", "Low", "None"];
+	const priorities = ["high", "medium", "low", "none"];
   const [tags, setTags] = useState([]);
   const [todo, setTodo] = useState({
     title: "",
@@ -14,11 +14,10 @@ export default function CreateTodo() {
     category: "",
     tag: [],
     status: "Unfinished",
-    priority: "None",
+    priority: "none",
     date: null,
 		time: null
   });
-	const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   //Get list of all tags to use for component
@@ -51,43 +50,12 @@ export default function CreateTodo() {
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
-
-		/*
-		let validateErrors = [];
-		let invalid = false;
-
-		//make into function later
-		if (todo.title.length === 0) {
-			validateErrors['title'] = 'Title must not be empty!';
-			invalid = true;
-		};
-		if (document.getElementById('dateInput')) {
-			if (document.getElementById('dateButton').className === 'dateRemove') {
-				if (document.getElementById('dateInput').value === "") {
-					validateErrors['date'] = 'Date must not be blank or incomplete!';
-					invalid = true;
-				}
-			} 
-			if (document.getElementById('timeButton').className === 'timeRemove') {
-				if (document.getElementById('timeInput').value === "") {
-					validateErrors['time'] = 'Time must be filled correctly!';
-					invalid = true;
-				}
-			}
-		};
-		
-		setErrors(validateErrors)
-
-		if (invalid === true) { return; }
-
-		*/
   
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newTodo = { ...todo };
 		console.log(newTodo);
 		
-		/*
-    await fetch("http://localhost:5000/todo/add", {
+    await fetch("http://localhost:5000/todos/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -100,65 +68,69 @@ export default function CreateTodo() {
     });
 
     setTodo({ title: "", description: "", category: "", tag: [],
-      status: "Unfinished", priority: "None", date: null, time: null,});
-		setErrors({});
+      status: "Unfinished", priority: "none", date: null, time: null,});
     navigate("/");
-		*/
   }
+
+	function updateTitle(e) {
+		updateTodo({ title: e.target.value });
+		if (e.target.value.length === 0) {
+			document.getElementsByClassName('add-todo')[0].disabled = true;
+		} else {
+			document.getElementsByClassName('add-todo')[0].disabled = false;
+		}
+	}
   
   // This following section will display the todo that takes the input from the user.
   return (
     <div className="tvdo-page">
       <h1 className="todo-heading">Create New Todo</h1>
       <form onSubmit={onSubmit} className="todo-form">
-				<div className="text-inputs">
-					<div className="form-group todo-title">
-						<p className="errorPara">{errors.title}</p>
-						<label htmlFor="title" />
-						<input
-							type="text"
-							className="form-control todo-title"
-							placeholder="e.g., Vinson is the greatest"
-							id="title"
-							value={todo.title}
-							onChange={(e) => updateTodo({ title: e.target.value })}
-						/>
+				<div className="main-todo-form">
+					<div className="text-inputs">
+						<div className="form-group todo-title">
+							<label htmlFor="title" />
+							<input
+								type="text"
+								className="form-control todo-title"
+								placeholder="e.g., Vinson is the greatest"
+								id="title"
+								value={todo.title}
+								onChange={(e) => updateTitle(e)}
+							/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="description" />
+							<textarea 
+								id="description" 
+								className="form-control todo-description"
+								placeholder="Description"
+								name="description"
+								onChange={(e) => updateTodo({ description: e.target.value })}
+							/>
+						</div>
 					</div>
-					<div className="form-group">
-						<label htmlFor="description" />
-						<textarea 
-							id="description" 
-							className="form-control todo-description"
-							placeholder="Description"
-							name="description"
-							onChange={(e) => updateTodo({ description: e.target.value })}
-						/>
-					</div>
-				</div>
-				<div className="todo-footer">
-					<DateForm todo={todo} updateTodo={updateTodo} />
-					<div className="footer-buttons">
-						<Checkboxes tags={tags} todo={todo} updateTodo={updateTodo} />
-						<div className="priority-button">
-							<span className="material-symbols-outlined">
-								flag
-							</span>
+					<div className="todo-footer">
+						<DateForm todo={todo} updateTodo={updateTodo} />
+						<div className="footer-buttons">
+							<Checkboxes tags={tags} todo={todo} updateTodo={updateTodo} />
 							<Radios priorities={priorities} todo={todo} updateTodo={updateTodo} />
-						</div>
-						<div className="question-button">
-							<span className="material-symbols-outlined">
-								help
-							</span>
+							<div className="question-button">
+								<span className="material-symbols-outlined">
+									help
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
-					<div className="form-group">
-						<input
-							type="submit"
-							value="Add Todo"
-							className="btn btn-primary"
-						/>
-					</div>
+				<div className="footer-todo-form">
+						<button type="button" className="cancel-todo footer-todo-button">
+							Cancel
+						</button>
+						<button type="submit" className="add-todo footer-todo-button" disabled onClick={(e) => onSubmit(e)}>
+							Add Todo
+						</button>
+				</div>
       </form>
     </div>
   );
