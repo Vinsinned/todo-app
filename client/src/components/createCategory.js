@@ -3,6 +3,17 @@ import { useNavigate } from "react-router";
 import Colors from "./colorForm";
  
 export default function CreateCategory() {
+	const navigate = useNavigate();
+	//Create a category state that will push the data to MongoDB
+	const [category, setCategory] = useState({
+		name: "",
+		color: {
+			colorHex: "#78909C",
+			colorName: "Regent Gray",
+		},
+		favorite: false
+	});
+
 	const colors = {
 		'Burnt Sienna': '#EF5350',
 		'French Rose': '#EC407A',
@@ -25,15 +36,6 @@ export default function CreateCategory() {
 		'Regent Gray': '#78909C',
 		'Black': '#000'
 	}
-	const [category, setCategory] = useState({
-		name: "",
-		color: {
-			colorHex: "#78909C",
-			colorName: "Regent Gray",
-		},
-		favorite: false
-	});
-	const navigate = useNavigate();
  
 	// These methods will update the state properties.
 	function updateCategory(value) {
@@ -42,19 +44,19 @@ export default function CreateCategory() {
 		});
 	}
 
-	function colorClick(e) {
+	//When the current color button is clicked, show the color dropdown
+	function colorClick() {
 		document.getElementsByClassName('color-dropdown')[0].classList.toggle('color-dropdown--show');
 		document.getElementsByClassName('category-form')[0].classList.toggle('category-form--height');
 	}
  
- 	// This function will handle the submission.
+ 	//This function will handle the submission.
 	async function onSubmit(e) {
 		e.preventDefault();
 		
 		// When a post request is sent to the create url, we'll add a new category to the database.
 		const newCategory = { ...category };
 		
-		//fiux
 		await fetch("http://localhost:5000/categories/add", {
 			method: "POST",
 			headers: {
@@ -71,7 +73,7 @@ export default function CreateCategory() {
 		navigate("/");
 	}
 
-	//check if color dropdown is clicked, if not, remove if it wasn't already
+	//When the page blocker is active and it was clicked anywhere, remove the color dropdown
 	function blockClick(e) {
 		if (document.getElementsByClassName('color-dropdown')[0].classList.contains('color-dropdown--show') === true) {
 			if (e.target.className.includes('current-color') === false && e.target.className.includes('color-option') === false) {
@@ -81,7 +83,7 @@ export default function CreateCategory() {
 		}
 	}
 
-	//disable and enable togglebar depending on length whenever name input is changed
+	//Disable and enable togglebar depending on length whenever name input is changed
 	function nameChange(e) {
 		updateCategory({ name: e.target.value });
 		if (e.target.value.length !== 0) {
@@ -91,6 +93,7 @@ export default function CreateCategory() {
 		}
 	}
 
+	//Toggles the custom toggle switch
 	function toggleClick(e) {
 		document.getElementsByClassName('switch-input')[0].classList.toggle('toggle-on');
 		if (document.getElementsByClassName('switch-input')[0].className.includes('toggle-on')) {
@@ -127,7 +130,6 @@ export default function CreateCategory() {
 							<label htmlFor="color">Color</label>
 							<button type="button" className="current-color form-control form-field" value={`${category.color.colorHex} ${category.color.colorName}`}
 								onClick={(e) => colorClick(e)}>
-								{/*updateCategory({color: {colorName: category.color, colorHex}})*/}
 								<span className="current-color__color" style={{backgroundColor: category.color.colorHex}} />
 								{category.color.colorName}
 							</button>

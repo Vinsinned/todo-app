@@ -9,7 +9,8 @@ export default function ResponsiveTimePicker(props) {
   const { todo, updateTodo } = props;
   const [value, setValue] = React.useState(new Date());
 
-  function timePickerClick(value) {
+  //When the time picker's value is changed, set the state and todo with the new value
+  function timePickerChange(value) {
     setValue(value);
     updateTodo({ time: value })
   }
@@ -18,7 +19,7 @@ export default function ResponsiveTimePicker(props) {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
         <TimePicker
           value={value}
-          onChange={(value) => timePickerClick(value)}
+          onChange={(value) => timePickerChange(value)}
           renderInput={(params) => <TextField {...params} />}
         />
     </LocalizationProvider>

@@ -4,6 +4,7 @@ import '../styles/style.css';
 // We import NavLink to utilize the react router.
 import { NavLink } from "react-router-dom";
 
+//Decalre a component to create the individual category HTML
 const Category = (props) => (
 	<li className="category">
 		{props.category.name}
@@ -11,9 +12,10 @@ const Category = (props) => (
  );
 
 export default function Sidebar() {
+	//Declare a category state to store all of the categories info
 	const [categories, setCategories] = useState([]);
-	let test=[];
 
+	//When the category length isn't the same, update it
 	useEffect(() => {
 		async function getCategories() {
 			const response = await fetch(`http://localhost:5000/categories/`);
@@ -33,17 +35,19 @@ export default function Sidebar() {
 		return;
 	}, [categories.length]);
 
+	//Show or hide the categories when the toggle div is clicked
 	function categoriesToggle() {
 		document.getElementsByClassName('categories__expand')[0].classList.toggle('categories--hide');
 		document.getElementsByClassName('categories__collapse')[0].classList.toggle('categories--hide')
 	}
 
+	//Create the category list HTML from the state
 	function categoryList() {
 		return categories.map((category) => {
 			return (
 				<Category
 					category={category}
-					//key is not a prop, it is an actual key for React to differentiate changes
+					//Note to self: key is not a prop, it is an actual key for React to differentiate changes
 					key={category._id}
 				/>
 			);

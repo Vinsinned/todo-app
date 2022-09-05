@@ -6,14 +6,17 @@ import '../styles/style.css';
 export default function DateForm(props) {
 const { todo, updateTodo } = props;
 
-const [startDate, setStartDate] = useState(new Date());
+//Create a date starting from today for default date value
+const [date, setDate] = useState(new Date());
+//Create date and time button states in order to add and remove, then rerender
 const [dateButton, setDateButton] = useState([
 	<button key="dateButton" id="dateButton" type="button" onClick={(e) => dateClicked(e)} className="dateAdd date-button"><span className="material-symbols-outlined">event</span>Add Date</button>
 ]);
 const [timeButton, setTimeButton] = useState([]);
 
-function datePickerClick(date) {
-	setStartDate(date);
+//When date picker is changed, set the date state and update todo state to new date
+function datePickerChange(date) {
+	setDate(date);
 	updateTodo({ date: date });
 }
 
@@ -35,6 +38,7 @@ function removeTime() {
 
 function dateClicked(e) {
 	if (e.target.className.includes('dateAdd')) {
+		//If the date button didn't add the date picker yet, add it and change the two buttons to match
 		addDate();
 		setDateButton([
 			<button key="dateButton" id="dateButton" type="button" onClick={(e) => dateClicked(e)} className="dateRemove date-button"><span className="material-symbols-outlined">event</span>Remove Date</button>
@@ -44,6 +48,7 @@ function dateClicked(e) {
 		]);
 		updateTodo({ date: new Date() });
 	} else if (e.target.className.includes('dateRemove')) {
+		//If the date picker is already added, remove it
 		removeDate();
 		setDateButton([
 			<button key="dateButton" id="dateButton" type="button" onClick={(e) => dateClicked(e)} className="dateAdd date-button"><span className="material-symbols-outlined">event</span>Add Date</button>
@@ -56,12 +61,14 @@ function dateClicked(e) {
 
 function timeClicked(e) {
 	if (e.target.className.includes('timeAdd')) {
+		//If the time picker isn't added yet, add it
 		addTime();
 		setTimeButton([
 			<button type="button" key="timeButton" id="timeButton" className="timeRemove date-button" onClick={(e) => timeClicked(e)}><span className="material-symbols-outlined">timer </span>Remove Time</button>
 		]);
 		updateTodo({ time: new Date() });
 	} else if (e.target.className.includes('timeRemove')) {
+		//Else if the time picker isn't already added, remove it
 		removeTime();
 		setTimeButton([
 			<button type="button" key="timeButton" id="timeButton" className="timeAdd date-button" onClick={(e) => timeClicked(e)}><span className="material-symbols-outlined">timer </span>Add Time</button>
@@ -73,7 +80,7 @@ function timeClicked(e) {
 return (
 	<div className="dateContainer">
 		<div className="form-group date-group">
-			<DatePicker selected={startDate} onChange={(date) => datePickerClick(date)} key="date" className="date-picker" />
+			<DatePicker selected={date} onChange={(date) => datePickerChange(date)} key="date" className="date-picker" />
 			{dateButton}
 			{timeButton}
 			<ResponsiveTimePicker todo={todo} updateTodo={updateTodo} />

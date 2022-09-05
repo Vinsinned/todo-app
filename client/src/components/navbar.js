@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
  
 // Here, we display our Navbar
 export default function Navbar() {
+	//Function for custom cancel in custom search bar
 	function searchClose() {
 		document.getElementsByClassName('search-close')[0].classList.remove('show-close');
 		document.getElementsByClassName('search-container')[0].classList.remove('search-active');

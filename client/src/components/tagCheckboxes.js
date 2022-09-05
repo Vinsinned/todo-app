@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 
 export default function Checkboxes(props) {
 	const {tags, todo, updateTodo} = props;
+	//Declare a list state that will contain HTML of all tags
 	const [list, setList] = useState([]);
 	
+	//Get tags from database and map the data to create HTML
 	async function allTags() {
 		const tags = await fetch(`http://localhost:5000/tags`);
 
@@ -13,7 +15,9 @@ export default function Checkboxes(props) {
 			return;
 		}
 
+		//Wait for tags json to finish fetch (It is asynchronous)
 		const list = await tags.json();
+		//Declare an array to fill with HTML
 		const tagsArray = [];
 
 		list.map((tag) => {
@@ -41,43 +45,51 @@ export default function Checkboxes(props) {
 				</div>
 			)
 		});
+		//Set list to the tags array in order to rerender
 		setList(tagsArray);
 	};
 
-	function checkEvent(e) {
-		if (e.checked === true) {
-			updateTodo({ tag: [...todo.tag, e.value] });
-		} else if (e.checked === false) {
-			updateTodo({tag: todo.tag.filter(value => value !== e.value)})
-		}
-	}
-
-	function tagCheckboxClick(e) {
-		document.getElementsByClassName('tag-blocker')[0].classList.add('tag-blocker--show');
-		document.getElementsByClassName('todo-sell-button')[0].classList.add('todo-sell-button--clicked');
-		allTags();
-	}
-
+	//When a tag option is clicked, toggle the check
 	function tagFormClick(e) {
 		document.getElementsByName(e.target.classList[1])[0].checked = !document.getElementsByName(e.target.classList[1])[0].checked;
 		checkEvent(document.getElementsByName(e.target.classList[1])[0]);
 	}
 
+	function checkEvent(e) {
+		if (e.checked === true) {
+			//If the tag is checked, add the tag to the state
+			updateTodo({ tag: [...todo.tag, e.value] });
+		} else if (e.checked === false) {
+			//Else, go through the array and remove the tag
+			updateTodo({tag: todo.tag.filter(value => value !== e.value)})
+		}
+	}
+
+	//When the tag todo button is clicked, add styling and blocker
+	function tagCheckboxClick(e) {
+		document.getElementsByClassName('tag-blocker')[0].classList.add('tag-blocker--show');
+		document.getElementsByClassName('todo-sell-button')[0].classList.add('todo-sell-button--clicked');
+		allTags();
+	}
+	
+	//Add a new tag to the database if the add tag button is clicked
 	async function addTag(name) {
+		//Declare a variable with the name and push it to the database
 		const newTag = name;
 
 		await fetch("http://localhost:5000/tags/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newTag),
-    })
-    .catch(error => {
-      window.alert(error);
-      return;
-    });
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(newTag),
+		})
+		.catch(error => {
+			window.alert(error);
+			return;
+		});
 
+		//Wait until fetch gets the tag revently added
 		const tags = await fetch(`http://localhost:5000/tags/search?${new URLSearchParams({name: newTag.name})}`);
 
 		if (!tags.ok) {
@@ -86,6 +98,7 @@ export default function Checkboxes(props) {
 			return;
 		}
 
+		//Update the list state with the new results
 		const list = await tags.json();
 		const tagsArray = [];
 
@@ -119,6 +132,7 @@ export default function Checkboxes(props) {
 
 	}
 
+	//When the tag input is changed, update the list state with the results
 	async function tagInputChange(e) {
 		const name = e.target.value;
 		const tags = await fetch(`http://localhost:5000/tags/search?${new URLSearchParams({name: name})}`);

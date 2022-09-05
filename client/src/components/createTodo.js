@@ -6,7 +6,10 @@ import DateForm from "./datePicker";
 
 //add props that links to category/parent of todo
 export default function CreateTodo() {
+	const navigate = useNavigate();
+	//Create an array of priorities to be generated into HTML
 	const priorities = ["high", "medium", "low", "none"];
+	//Create a tags state in order to be able to get all tags from database and rerender
   const [tags, setTags] = useState([]);
   const [todo, setTodo] = useState({
     title: "",
@@ -18,7 +21,6 @@ export default function CreateTodo() {
     date: null,
 		time: null
   });
-  const navigate = useNavigate();
 
   //Get list of all tags to use for component
   useEffect(() => {
@@ -72,6 +74,7 @@ export default function CreateTodo() {
     navigate("/");
   }
 
+	//When the title input is changed, check length to see if the add todo button needs to be disabled
 	function updateTitle(e) {
 		updateTodo({ title: e.target.value });
 		if (e.target.value.length === 0) {
