@@ -1,0 +1,57 @@
+/* Customize the label (the container) */
+.todo-checkbox {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    margin-right: 0.75rem;
+    font-size: 22px;
+    height: 0.5rem;
+    width: 0.9rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .todo-checkmark-sign {
+    position: relative;
+    bottom: 2px;
+    right: 2px;
+    font-size: 1rem;
+    color: transparent !important;
+    &:hover {
+      background-color: transparent !important;
+    }
+    pointer-events: none;
+  }
+
+  .todo-checkmark-sign--show {
+    color: #fff !important;
+  }
+
+  /* Hide the browser's default checkbox */
+  .todo-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.125rem;
+    width: 1.125rem;
+    border: 1px solid grey;
+    border-radius: 50%;
+    background-color: transparent;
+    box-sizing: border-box;
+  }
+  
+  /* Show the checkmark when checked */
+  .todo-checkbox input:checked ~ .checkmark:after {
+    display: block;
+  }

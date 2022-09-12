@@ -1652,6 +1652,259 @@ nav .right-nav .profile .profile__image {
   transform: rotate(45deg);
 }
 
+.inbox-section {
+  width: 85%;
+  margin: auto;
+  margin-top: 2.25rem;
+}
+.inbox-section .inbox-header h1 {
+  font-size: 1.25rem;
+  line-height: 1.55rem;
+  margin: 0;
+}
+.inbox-section .inbox-header .inbox-sort {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+.inbox-section .inbox-header .inbox-sort span {
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding-right: 0.5rem;
+  color: grey;
+}
+.inbox-section .inbox-header .inbox-sort .inbox-sort__close {
+  font-size: 0.9rem;
+  margin-top: 0.1rem;
+  padding-right: 0;
+}
+.inbox-section .inbox-header .inbox-sort .inbox-sort__close:hover {
+  background-color: transparent;
+}
+
+/* Customize the label (the container) */
+.todo-checkbox {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  margin-right: 0.75rem;
+  font-size: 22px;
+  height: 0.5rem;
+  width: 0.9rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.todo-checkmark-sign {
+  position: relative;
+  bottom: 2px;
+  right: 2px;
+  font-size: 1rem;
+  color: transparent !important;
+  pointer-events: none;
+}
+.todo-checkmark-sign:hover {
+  background-color: transparent !important;
+}
+
+.todo-checkmark-sign--show {
+  color: #fff !important;
+}
+
+/* Hide the browser's default checkbox */
+.todo-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.125rem;
+  width: 1.125rem;
+  border: 1px solid grey;
+  border-radius: 50%;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+/* Show the checkmark when checked */
+.todo-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.todo-item {
+  display: flex;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+  cursor: pointer;
+  /* When the checkbox is checked, add a background */
+}
+.todo-item:hover .drag-todo {
+  display: block;
+}
+.todo-item:hover .todo-information .todo-header .todo-options {
+  display: block;
+}
+.todo-item:hover .todo-information .todo-header .todo-more {
+  display: block;
+}
+.todo-item .unclicked:hover + .todo-checkmark-sign {
+  color: grey !important;
+}
+.todo-item .unclicked:hover + .todo-checkmark-high {
+  color: #f50057 !important;
+}
+.todo-item .unclicked:hover + .todo-checkmark-medium {
+  color: #1976d2 !important;
+}
+.todo-item .unclicked:hover + .todo-checkmark-low {
+  color: #43a047 !important;
+}
+.todo-item .clicked + .todo-checkmark-high {
+  color: #fff !important;
+}
+.todo-item .clicked + .todo-checkmark-medium {
+  color: #fff !important;
+}
+.todo-item .clicked + .todo-checkmark-low {
+  color: #fff !important;
+}
+.todo-item .clicked + .todo-checkmark-sign {
+  color: #fff !important;
+}
+.todo-item .checkmark-high {
+  border: 2px solid #f50057;
+  background-color: rgba(245, 0, 87, 0.1);
+}
+.todo-item .checkmark-medium {
+  border: 2px solid #1976d2;
+  background-color: rgba(25, 118, 210, 0.1);
+}
+.todo-item .checkmark-low {
+  border: 2px solid #43a047;
+  background-color: rgba(67, 160, 71, 0.1);
+}
+.todo-item .todo-checkbox input:checked ~ .checkmark {
+  background-color: #808080;
+}
+.todo-item .todo-checkbox input:checked ~ .checkmark-high {
+  background-color: rgba(245, 0, 87, 0.9);
+}
+.todo-item .todo-checkbox input:checked ~ .checkmark-medium {
+  background-color: rgba(25, 118, 210, 0.9);
+}
+.todo-item .todo-checkbox input:checked ~ .checkmark-low {
+  background-color: rgba(67, 160, 71, 0.9);
+}
+.todo-item .drag-todo {
+  display: none;
+  position: absolute;
+  left: -2rem;
+  top: 0.35rem;
+  color: grey;
+  font-weight: 700;
+  padding: 0;
+}
+.todo-item .drag-todo:hover {
+  background-color: transparent;
+}
+.todo-item .todo-information {
+  width: 100%;
+}
+.todo-item .todo-information .todo-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+.todo-item .todo-information .todo-header .todo-title {
+  font-size: 0.875rem;
+  font-weight: normal;
+  line-height: 1.3125rem;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow: hidden;
+  margin: 0;
+}
+.todo-item .todo-information .todo-header .todo-options {
+  position: absolute;
+  right: 0;
+  display: none;
+}
+.todo-item .todo-information .todo-header .todo-options .material-symbols-outlined {
+  color: grey;
+  padding: 0.01rem;
+  margin-right: 0.5rem;
+}
+.todo-item .todo-information .todo-header .todo-options .material-symbols-outlined:hover {
+  background-color: #eee;
+}
+.todo-item .todo-information .todo-header .todo-more {
+  display: none;
+  position: absolute;
+  right: -1.5rem;
+  top: 0.5rem;
+}
+.todo-item .todo-information .todo-header .todo-more .material-symbols-outlined {
+  color: grey;
+  font-weight: 700;
+  padding: 0.01rem;
+}
+.todo-item .todo-information .todo-header .todo-more .material-symbols-outlined:hover {
+  background-color: #eee;
+}
+.todo-item .todo-information .todo-information-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.todo-item .todo-information .todo-information-footer .todo-deadline {
+  display: flex;
+  align-items: center;
+}
+.todo-item .todo-information .todo-information-footer .todo-deadline .todo-deadline__calendar {
+  color: #0284c7;
+  font-size: 1rem;
+  padding: 0;
+}
+.todo-item .todo-information .todo-information-footer .todo-deadline .todo-deadline__calendar:hover {
+  background-color: transparent;
+}
+.todo-item .todo-information .todo-information-footer .todo-deadline .todo-deadline__heading {
+  color: #0284c7;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+  font-weight: 500;
+  margin: 0;
+}
+.todo-item .todo-information .todo-information-footer .todo-item-category {
+  display: flex;
+  align-items: center;
+}
+.todo-item .todo-information .todo-information-footer .todo-item-category .todo-item-category__name {
+  color: grey;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin: 0;
+}
+.todo-item .todo-information .todo-information-footer .todo-item-category .todo-item-category__color {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-left: 0.125rem;
+  border-radius: 50%;
+}
+
 .material-symbols-outlined {
   color: #fff;
   padding: 0.2rem;

@@ -1,0 +1,35 @@
+.inbox-section {
+    width: 85%;
+		margin: auto;
+		margin-top: 2.25rem;
+		.inbox-header {
+			h1 {
+				font-size: 1.25rem;
+				line-height: 1.55rem;
+				margin: 0;
+			}
+			.inbox-sort {
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				padding-bottom: 0.625rem;
+				border-bottom: 1px solid #f0f0f0;
+				cursor: pointer;
+				margin-bottom: 2rem;
+				span {
+					font-weight: 700;
+					font-size: 0.75rem;
+					padding-right: 0.5rem;
+					color: grey;
+				}
+				.inbox-sort__close {
+					font-size: 0.9rem;
+					margin-top: 0.1rem;
+					padding-right: 0;
+					&:hover {
+						background-color: transparent;
+					}
+				}
+			}
+		}
+}

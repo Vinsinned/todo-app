@@ -1,0 +1,180 @@
+.todo-item {
+	display: flex;
+	padding: 0.5rem 0;
+	border-bottom: 1px solid #f0f0f0;
+	position: relative;
+	cursor: pointer;
+
+	&:hover {
+		.drag-todo {
+			display: block;
+		}
+		.todo-information {
+			.todo-header {
+				.todo-options {
+					display: block;
+				}
+				.todo-more {
+					display: block;
+				}
+			}
+		}
+	}
+
+	.unclicked {
+    &:hover {
+      + .todo-checkmark-sign {
+        color: grey !important;
+      }
+      + .todo-checkmark-high {
+        color: #f50057 !important;
+      }
+      + .todo-checkmark-medium {
+        color: #1976d2 !important;
+      }
+      + .todo-checkmark-low {
+        color: #43a047 !important;
+      }
+    }
+  }
+
+  .clicked {
+    + .todo-checkmark-high {
+      color: #fff !important;
+    }
+    + .todo-checkmark-medium {
+      color: #fff !important;
+    }
+    + .todo-checkmark-low {
+      color: #fff !important;
+    }
+    + .todo-checkmark-sign {
+      color: #fff !important;
+    }
+  }
+
+	.checkmark-high {
+    border: 2px solid #f50057;
+    background-color: rgba(#f50057, 0.1);
+  }
+  .checkmark-medium {
+    border: 2px solid #1976d2;
+    background-color: rgba(#1976d2, 0.1);
+  }
+  .checkmark-low {
+    border: 2px solid #43a047;
+    background-color: rgba(#43a047, 0.1);
+  }
+  
+  /* When the checkbox is checked, add a background */
+  .todo-checkbox input:checked ~ .checkmark {
+    background-color: #808080;
+  }
+
+  .todo-checkbox input:checked ~ .checkmark-high {
+    background-color: rgba(#f50057, 0.9);
+  }
+  .todo-checkbox input:checked ~ .checkmark-medium {
+    background-color: rgba(#1976d2, 0.9);
+  }
+  .todo-checkbox input:checked ~ .checkmark-low {
+    background-color: rgba(#43a047, 0.9);
+  }
+
+	.drag-todo {
+		display: none;
+		position: absolute;
+		left: -2rem;
+		top: 0.35rem;
+		color: grey;
+		font-weight: 700;
+		padding: 0;
+		&:hover {
+			background-color: transparent;
+		}
+	}
+
+	.todo-information {
+		width: 100%;
+		.todo-header {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 0.2rem;
+			.todo-title {
+				font-size: 0.875rem;
+				font-weight: normal;
+				line-height: 1.3125rem;
+				word-wrap: break-word;
+				word-break: break-word;
+				overflow: hidden;
+				margin: 0;
+			}
+			.todo-options {
+				position: absolute;
+				right: 0;
+				display: none;
+				.material-symbols-outlined {
+					color: grey;
+					padding: 0.01rem;
+					margin-right: 0.5rem;
+					&:hover {
+						background-color: #eee;
+					}
+				}
+			}
+			.todo-more {
+				display: none;
+				position: absolute;
+				right: -1.5rem;
+				top: 0.5rem;
+				.material-symbols-outlined {
+					color: grey;
+					font-weight: 700;
+					padding: 0.01rem;
+					&:hover {
+						background-color: #eee;
+					}
+				}
+			}
+		}
+		.todo-information-footer {
+			display: flex;
+			justify-content: space-between;
+			.todo-deadline {
+				display: flex;
+				align-items: center;
+				.todo-deadline__calendar {
+					color: #0284c7;
+					font-size: 1rem;
+					padding: 0;
+					&:hover {
+						background-color: transparent;
+					}
+				}
+				.todo-deadline__heading {
+					color: #0284c7;
+					font-size: 0.75rem;
+					line-height: 0.75rem;
+					font-weight: 500;
+					margin: 0;
+				}
+			}
+			.todo-item-category {
+				display: flex;
+				align-items: center;
+				.todo-item-category__name {
+					color: grey;
+					font-size: 0.75rem;
+					font-weight: 500;
+					margin: 0;
+				}
+				.todo-item-category__color {
+					width: 0.5rem;
+					height: 0.5rem;
+					margin-left: 0.125rem;
+					border-radius: 50%;
+				}
+			}
+		}
+	}
+}

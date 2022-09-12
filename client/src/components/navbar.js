@@ -16,41 +16,41 @@ export default function Navbar() {
 	return (
 		<section className="navbar">
 			<nav>
-					<div className="left-nav">
-						<span className="material-symbols-outlined">
-							menu
+				<div className="left-nav">
+					<span className="material-symbols-outlined">
+						menu
+					</span>
+					<NavLink to="/" style={{textDecoration: 'none'}}>
+						<h3 className="left-nav__title">Tvdo</h3>
+					</NavLink>
+				</div>
+				<div className="search-container">
+					<button type="button" className="search-container__search-icon">
+						<span className="material-symbols-outlined search-container__search-icon">
+							search
 						</span>
-						<NavLink to="/" style={{textDecoration: 'none'}}>
-							<h3 className="left-nav__title">Tvdo</h3>
-						</NavLink>
+					</button>
+					<input type="search" className="search-container__navbar-search" name="searchBar" />
+					{/*Named search-close in order to bypass includes in app.js function*/}
+					<span className="material-symbols-outlined search-close" onClick={() => searchClose()}>
+						close
+					</span>
+				</div>
+				<div className="right-nav">
+					<span className="material-symbols-outlined">
+						add
+					</span>
+					<span className="material-symbols-outlined">
+						help
+					</span>
+					<span className="material-symbols-outlined">
+						notifications
+					</span>
+					<div className="profile">
+						<img className="profile__image" src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" />
 					</div>
-					<div className="search-container">
-						<button type="button" className="search-container__search-icon">
-							<span className="material-symbols-outlined search-container__search-icon">
-								search
-							</span>
-						</button>
-						<input type="search" className="search-container__navbar-search" name="searchBar" />
-						{/*Named search-close in order to bypass includes in app.js function*/}
-						<span className="material-symbols-outlined search-close" onClick={() => searchClose()}>
-							close
-						</span>
-					</div>
-					<div className="right-nav">
-						<span className="material-symbols-outlined">
-							add
-						</span>
-						<span className="material-symbols-outlined">
-							help
-						</span>
-						<span className="material-symbols-outlined">
-							notifications
-						</span>
-						<div className="profile">
-							<img className="profile__image" src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" />
-						</div>
-					</div>
-				</nav>
+				</div>
+			</nav>
 		</section>
 	);
 }

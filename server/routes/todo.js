@@ -23,6 +23,17 @@ todoRoutes.route("/todos").get(function (req, res) {
      res.json(result);
    });
 });
+
+todoRoutes.route("/todos/priority").get(function (req, res) {
+  let db_connect = dbo.getDb("to_do_app");
+  db_connect
+    .collection("todos")
+    .find({ priority: { "$regex": req.query.priority }})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+ });
  
 // This section will help you get a single todo by id
 todoRoutes.route("/todos/:id").get(function (req, res) {

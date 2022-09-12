@@ -199,12 +199,12 @@ export default function Checkboxes(props) {
 				sell
 			</span>
 			<div className="tag-blocker">
-			<div className="form-group tag-form">
-				<input type="search" className="tag-search" placeholder="Search Tags" onChange={(e) => tagInputChange(e)} />
-				<div className="tag-list-div">
-				{list}
+				<div className="form-group tag-form">
+					<input type="search" className="tag-search" placeholder="Search Tags" onChange={(e) => tagInputChange(e)} />
+					<div className="tag-list-div">
+					{list}
+					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 	)
