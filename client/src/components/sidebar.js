@@ -4,13 +4,6 @@ import '../styles/style.css';
 // We import NavLink to utilize the react router.
 import { NavLink } from "react-router-dom";
 
-//Decalre a component to create the individual category HTML
-const Category = (props) => (
-	<li className="category">
-		{props.category.name}
-	</li>
- );
-
 export default function Sidebar() {
 	//Declare a category state to store all of the categories info
 	const [categories, setCategories] = useState([]);
@@ -18,18 +11,66 @@ export default function Sidebar() {
 	//When the category length isn't the same, update it
 	useEffect(() => {
 		async function getCategories() {
+			//create array for DOMs to be pushed
+			const categoriesArray = [];
+
+			//get count of category and return the JSON
+			async function getCount(categoryName) {
+				const countResponse = await fetch(`http://localhost:5000/categories/count?${new URLSearchParams({category: categoryName})}`);
+				if (!countResponse.ok) {
+					const message = `An error has occurred: ${countResponse.statusText}`;
+					window.alert(message);
+					return;
+				}
+				
+				const count = await countResponse.json();
+				if (!count) {
+					const message = `An error has occurred`;
+					window.alert(message);
+					return;
+				}
+
+				return count;
+			}
+
+			//get all categories from mongoDB
 			const response = await fetch(`http://localhost:5000/categories/`);
-	
 			if (!response.ok) {
 				const message = `An error occurred: ${response.statusText}`;
 				window.alert(message);
 				return;
 			}
-	
-			const categories = await response.json();
-			setCategories(categories);
+			
+			//wait until JSON is fetched
+			const getCategories = await response.json();
+			//create object dictionary for getting category count
+			const categoryCountArray = {};
+			
+			//iterate over each item in categories and append to categoriesArray as an element
+			const iterateCategories = async (categories) => {
+				for (const category of categories) {
+					await getCount(category.name).then((result) => {
+						categoriesArray.push(
+							<li className="sidebar-category" key={category._id}>
+								<div className="sidebar-category__category-info">
+									<span className="sidebar-category__color" style={{backgroundColor: category.color.colorHex}}/>
+									{category.name}
+									{result['count']}
+								</div>
+							</li>
+						)
+					})
+				}
+				return categoriesArray;
+			};
+
+			//call iterateCategories, and when it finishes (then function), set the categories
+			//This is done in order to make sure that the promise returns the value, not the promise itself as it is asynchronous
+			iterateCategories(getCategories).then(() => {
+				setCategories(categoriesArray);
+			});
 		}
-	
+
 		getCategories();
 	
 		return;
@@ -41,17 +82,8 @@ export default function Sidebar() {
 		document.getElementsByClassName('categories__collapse')[0].classList.toggle('categories--hide')
 	}
 
-	//Create the category list HTML from the state
-	function categoryList() {
-		return categories.map((category) => {
-			return (
-				<Category
-					category={category}
-					//Note to self: key is not a prop, it is an actual key for React to differentiate changes
-					key={category._id}
-				/>
-			);
-		});
+	function addCategory(e) {
+
 	}
 	return (
 		<nav className="sidebar">
@@ -117,12 +149,12 @@ export default function Sidebar() {
 							</span>
 							<h4 className="categories__heading">Categories</h4>
 						</div>
-						<span className="material-symbols-outlined categories__add">
+						<span className="material-symbols-outlined categories__add" onClick={(e) => addCategory}>
 							add
 						</span>
 					</div>
 				</li>
-				{categoryList()}
+				{categories}
 			</ul>
 		</nav>
 	);

@@ -11,7 +11,6 @@ const dbo = require("../MongooseConn.js");
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
  
- 
 // This section will help you get a list of all the records.
 categoryRoutes.route("/categories").get(function (req, res) {
  let db_connect = dbo.getDb("to_do_app");
@@ -22,6 +21,20 @@ categoryRoutes.route("/categories").get(function (req, res) {
      if (err) throw err;
      res.json(result);
    });
+});
+
+//get a count of all todos in a category
+categoryRoutes.route("/categories/count").get((req, res) => {
+  let db_connect = dbo.getDb("to_do_app");
+  db_connect
+  .collection("todos")
+  .countDocuments({category: { "$regex": req.query.category, "$options": "i"}}, function (err, result) {
+    if (err) {
+      res.json('error');
+    } else {
+      res.json({count: result});
+    }
+  });
 });
  
 // This section will help you get a single category by id
