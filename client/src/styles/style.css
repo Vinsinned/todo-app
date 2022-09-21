@@ -138,7 +138,7 @@ nav .right-nav .profile .profile__image {
   width: 100%;
 }
 .sidebar ul li {
-  width: 100%;
+  width: 93%;
 }
 .sidebar ul li div {
   display: flex;
@@ -178,6 +178,7 @@ nav .right-nav .profile .profile__image {
   padding: 0;
   height: 1.5rem;
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
   cursor: pointer;
 }
 .sidebar ul li .categories .categories__right {
@@ -208,6 +209,47 @@ nav .right-nav .profile .profile__image {
 }
 .sidebar ul li .material-symbols-outlined:hover {
   background-color: transparent;
+}
+.sidebar ul .category-info {
+  display: flex;
+  align-items: center;
+  border-radius: 0.3125rem;
+  padding: 0.5rem 0 0.5rem 0.625rem;
+  cursor: pointer;
+}
+.sidebar ul .category-info .category-info__color {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  margin-left: 0.4375rem;
+  margin-right: 0.75rem;
+}
+.sidebar ul .category-info .category-info__title {
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
+}
+.sidebar ul .category-info .category-info__count {
+  font-size: 0.8125rem;
+  color: #aaa;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+.sidebar ul .category-info .category-info__more {
+  position: absolute;
+  right: 1rem;
+  font-weight: bold;
+  padding: 0;
+  display: none;
+}
+.sidebar ul .category-info:hover {
+  background-color: #eee;
+}
+.sidebar ul .category-info:hover .category-info__count {
+  display: none;
+}
+.sidebar ul .category-info:hover .category-info__more {
+  display: block;
 }
 .sidebar:hover ul li .categories .categories__add {
   display: block;

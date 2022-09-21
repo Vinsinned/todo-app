@@ -51,12 +51,13 @@ export default function Sidebar() {
 				for (const category of categories) {
 					await getCount(category.name).then((result) => {
 						categoriesArray.push(
-							<li className="sidebar-category" key={category._id}>
-								<div className="sidebar-category__category-info">
-									<span className="sidebar-category__color" style={{backgroundColor: category.color.colorHex}}/>
-									{category.name}
-									{result['count']}
-								</div>
+							<li className="sidebar-category category-info" key={category._id}>
+								<span className="category-info__color" style={{backgroundColor: category.color.colorHex}}/>
+								<span className="category-info__title">{category.name}</span>
+								<span className="category-info__count">{result['count']}</span>
+								<span className="material-symbols-outlined category-info__more">
+									more_horiz
+								</span>
 							</li>
 						)
 					})
@@ -138,7 +139,7 @@ export default function Sidebar() {
 						</div>
 					</NavLink>
 				</li>
-				<li className="categories-container">
+				<li className="categories-container categories-button">
 					<div className="categories">
 						<div className="categories__right" onClick={() => {categoriesToggle()}}>
 							<span className="material-symbols-outlined categories__expand">
