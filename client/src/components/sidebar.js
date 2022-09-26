@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 export default function Sidebar() {
 	//Declare a category state to store all of the categories info
 	const [categories, setCategories] = useState([]);
+	const [currentTab, setCurrentTab] = useState('inbox');
 
 	//When the category length isn't the same, update it
 	useEffect(() => {
@@ -43,17 +44,21 @@ export default function Sidebar() {
 			
 			//wait until JSON is fetched
 			const getCategories = await response.json();
-			//create object dictionary for getting category count
-			const categoryCountArray = {};
 			
 			//iterate over each item in categories and append to categoriesArray as an element
 			const iterateCategories = async (categories) => {
 				for (const category of categories) {
+					let setCurrent = "";
+					if (category.name === currentTab) {
+						setCurrent = "current-tab"
+					}
 					await getCount(category.name).then((result) => {
 						categoriesArray.push(
-							<li className="sidebar-category category-info" key={category._id}>
-								<span className="category-info__color" style={{backgroundColor: category.color.colorHex}}/>
-								<span className="category-info__title">{category.name}</span>
+							<li className={`sidebar-category category-info ${setCurrent}`} key={category._id}>
+								<NavLink to="/" style={{textDecoration: 'none'}} className={`${category.name} sidebar__link__category-info sidebar__nav-link`}>
+									<span className="category-info__color" style={{backgroundColor: category.color.colorHex}}/>
+									<span className="category-info__title">{category.name}</span>
+								</NavLink>
 								<span className="category-info__count">{result['count']}</span>
 								<span className="material-symbols-outlined category-info__more">
 									more_horiz
@@ -75,7 +80,7 @@ export default function Sidebar() {
 		getCategories();
 	
 		return;
-	}, [categories.length]);
+	}, [categories.length, currentTab]);
 
 	//Show or hide the categories when the toggle div is clicked
 	function categoriesToggle() {
@@ -86,11 +91,24 @@ export default function Sidebar() {
 	function addCategory(e) {
 
 	}
+		
+	function checkCurrent(name) {
+		if (currentTab === name) {
+			return 'current-tab'
+		}
+	}
+
+	const listClick = (e) => {
+		if (e.target.parentNode.classList.contains('sidebar__nav-link') || e.target.classList.contains('sidebar__nav-link')) {
+			setCurrentTab(e.target.classList[0]);
+		}
+	}
+
 	return (
 		<nav className="sidebar">
-			<ul>
-				<li>
-					<NavLink to="/" style={{textDecoration: 'none'}} className="sidebar__link">
+			<ul onClick={(e) => listClick(e)}>
+				<li className={`main-tabs ${checkCurrent('inbox')}`}>
+					<NavLink to="/" style={{textDecoration: 'none'}} className="inbox sidebar__link sidebar__nav-link">
 						<div className="inbox">
 							<span className="material-symbols-outlined">
 								inbox
@@ -99,8 +117,8 @@ export default function Sidebar() {
 						</div>
 					</NavLink>
 				</li>
-				<li>
-					<NavLink to="/" style={{textDecoration: 'none'}} className="sidebar__link">
+				<li className={`main-tabs ${checkCurrent('today')}`}>
+					<NavLink to="/" style={{textDecoration: 'none'}} className="today sidebar__link sidebar__nav-link">
 						<div className="today">
 							<span className="material-symbols-outlined">
 								today
@@ -109,8 +127,8 @@ export default function Sidebar() {
 						</div>
 					</NavLink>
 				</li>
-				<li>
-					<NavLink to="/" style={{textDecoration: 'none'}} className="sidebar__link">
+				<li className={`main-tabs ${checkCurrent('upcoming')}`}>
+					<NavLink to="/" style={{textDecoration: 'none'}} className="upcoming sidebar__link sidebar__nav-link">
 						<div className="upcoming">
 							<span className="material-symbols-outlined">
 								calendar_month
@@ -119,8 +137,8 @@ export default function Sidebar() {
 						</div>
 					</NavLink>
 				</li>
-				<li>
-					<NavLink to="/" style={{textDecoration: 'none'}} className="sidebar__link">
+				<li className={`main-tabs ${checkCurrent('tasks')}`}>
+					<NavLink to="/" style={{textDecoration: 'none'}} className="tasks sidebar__link sidebar__nav-link">
 						<div className="tasks">
 							<span className="material-symbols-outlined">
 								list
@@ -129,8 +147,8 @@ export default function Sidebar() {
 						</div>
 					</NavLink>
 				</li>
-				<li>
-					<NavLink to="/" style={{textDecoration: 'none'}} className="sidebar__link">
+				<li className={`main-tabs ${checkCurrent('filter')}`}>
+					<NavLink to="/" style={{textDecoration: 'none'}} className="filter sidebar__link sidebar__nav-link">
 						<div className="filter">
 							<span className="material-symbols-outlined">
 								filter_list

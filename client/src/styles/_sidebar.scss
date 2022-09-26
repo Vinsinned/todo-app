@@ -27,19 +27,28 @@
 		align-items: flex-start;
 		width: 100%;
 		li {
-			width: 93%;
+			width: 100%;
+			.sidebar__link {
+				color: #000;
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			.sidebar__link__category-info {
+				width: 100%;
+				padding: 0.5rem 0 0.5rem 0.625rem;
+				position: relative;
+				color: #000;
+			}
 			div {
 				@include flex;
 				align-items: center;
 				padding: 0.1rem;
 				margin-right: 0.25rem;
 				&:hover {
-					background-color: rgba(#0284c7, 0.1);
+					background-color: #eee;
 					border-radius: 0.25rem;
 				}
-			}
-			.sidebar__link {
-				color: #000;
 			}
 			.inbox {
 				.material-symbols-outlined {
@@ -73,7 +82,6 @@
 				height: 1.5rem;
 				margin-top: 1rem;
 				margin-bottom: 0.5rem;
-				cursor: pointer;
 				.categories__right {
 					width: 100%;
 					height: 1.5rem;
@@ -90,7 +98,7 @@
 					margin-left: auto;
 					display: none;
 					&:hover {
-						background-color: rgba(#0284c7, 0.1);
+						background-color: #eee;
 					}
 				}
 				.categories--hide {
@@ -108,11 +116,10 @@
 			}
 		}
 		.category-info {
+			width: calc(100% - 0.25rem);
 			display: flex;
 			align-items: center;
 			border-radius: 0.3125rem;
-			padding: 0.5rem 0 0.5rem 0.625rem;
-			cursor: pointer;
 			.category-info__color {
 				display: inline-block;
 				width: 0.625rem;
@@ -120,16 +127,19 @@
 				border-radius: 50%;
 				margin-left: 0.4375rem;
 				margin-right: 0.75rem;
+				pointer-events: none;
 			}
 			.category-info__title {
-				font-size: 0.875rem;
+				font-size: 0.95rem;
 				line-height: 1.0625rem;
+				pointer-events: none;
 			}
 			.category-info__count {
 				font-size: 0.8125rem;
 				color: #aaa;
 				margin-left: auto;
-				margin-right: 1rem;
+				margin-right: 1.25rem;
+				pointer-events: none;
 			}
 			.category-info__more {
 				position: absolute;
@@ -148,6 +158,19 @@
 				}
 			}
 		}
+		.main-tabs {
+			width: 98%;
+			border-radius: 0.3125rem;
+			div {
+				pointer-events: none;
+			}
+			&:hover {
+				background-color: #eee;
+			}
+		}
+	}
+	.current-tab {
+		background-color: #eee;
 	}
 	&:hover {
 		ul li .categories .categories__add {

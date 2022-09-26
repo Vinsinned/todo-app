@@ -138,7 +138,19 @@ nav .right-nav .profile .profile__image {
   width: 100%;
 }
 .sidebar ul li {
-  width: 93%;
+  width: 100%;
+}
+.sidebar ul li .sidebar__link {
+  color: #000;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.sidebar ul li .sidebar__link__category-info {
+  width: 100%;
+  padding: 0.5rem 0 0.5rem 0.625rem;
+  position: relative;
+  color: #000;
 }
 .sidebar ul li div {
   display: flex;
@@ -149,11 +161,8 @@ nav .right-nav .profile .profile__image {
   margin-right: 0.25rem;
 }
 .sidebar ul li div:hover {
-  background-color: rgba(2, 132, 199, 0.1);
+  background-color: #eee;
   border-radius: 0.25rem;
-}
-.sidebar ul li .sidebar__link {
-  color: #000;
 }
 .sidebar ul li .inbox .material-symbols-outlined {
   color: #67e8f9;
@@ -179,7 +188,6 @@ nav .right-nav .profile .profile__image {
   height: 1.5rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  cursor: pointer;
 }
 .sidebar ul li .categories .categories__right {
   width: 100%;
@@ -198,7 +206,7 @@ nav .right-nav .profile .profile__image {
   display: none;
 }
 .sidebar ul li .categories .categories__add:hover {
-  background-color: rgba(2, 132, 199, 0.1);
+  background-color: #eee;
 }
 .sidebar ul li .categories .categories--hide {
   display: none !important;
@@ -211,11 +219,10 @@ nav .right-nav .profile .profile__image {
   background-color: transparent;
 }
 .sidebar ul .category-info {
+  width: calc(100% - 0.25rem);
   display: flex;
   align-items: center;
   border-radius: 0.3125rem;
-  padding: 0.5rem 0 0.5rem 0.625rem;
-  cursor: pointer;
 }
 .sidebar ul .category-info .category-info__color {
   display: inline-block;
@@ -224,16 +231,19 @@ nav .right-nav .profile .profile__image {
   border-radius: 50%;
   margin-left: 0.4375rem;
   margin-right: 0.75rem;
+  pointer-events: none;
 }
 .sidebar ul .category-info .category-info__title {
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   line-height: 1.0625rem;
+  pointer-events: none;
 }
 .sidebar ul .category-info .category-info__count {
   font-size: 0.8125rem;
   color: #aaa;
   margin-left: auto;
-  margin-right: 1rem;
+  margin-right: 1.25rem;
+  pointer-events: none;
 }
 .sidebar ul .category-info .category-info__more {
   position: absolute;
@@ -250,6 +260,19 @@ nav .right-nav .profile .profile__image {
 }
 .sidebar ul .category-info:hover .category-info__more {
   display: block;
+}
+.sidebar ul .main-tabs {
+  width: 98%;
+  border-radius: 0.3125rem;
+}
+.sidebar ul .main-tabs div {
+  pointer-events: none;
+}
+.sidebar ul .main-tabs:hover {
+  background-color: #eee;
+}
+.sidebar .current-tab {
+  background-color: #eee;
 }
 .sidebar:hover ul li .categories .categories__add {
   display: block;
