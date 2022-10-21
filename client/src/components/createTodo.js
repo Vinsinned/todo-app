@@ -5,7 +5,7 @@ import Radios from "./priorityRadio";
 import DateForm from "./datePicker";
 
 //add props that links to category/parent of todo
-export default function CreateTodo() {
+export default function CreateTodo(props) {
 	const navigate = useNavigate();
 	//Create an array of priorities to be generated into HTML
 	const priorities = ["high", "medium", "low", "none"];
@@ -115,6 +115,7 @@ export default function CreateTodo() {
 					</div>
 					<div className="todo-footer">
 						<DateForm todo={todo} updateTodo={updateTodo} />
+						<p>THIS IS FOR CATEGORY DROPBOX</p>
 						<div className="footer-buttons">
 							<Checkboxes tags={tags} todo={todo} updateTodo={updateTodo} />
 							<Radios priorities={priorities} todo={todo} updateTodo={updateTodo} />

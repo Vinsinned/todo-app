@@ -2035,4 +2035,30 @@ nav .right-nav .profile .profile__image {
 
 .priority-blocker--show {
   display: block;
+}
+
+.addTodo {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 6px 0 8px;
+  font-size: 0.875rem;
+  color: grey;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.addTodo .material-symbols-outlined {
+  font-size: 1.25rem;
+  margin-right: 0.6875rem;
+  color: #0ea5e9;
+  padding: 0;
+  border-radius: 50%;
+}
+.addTodo:hover {
+  color: #0ea5e9;
+}
+.addTodo:hover .material-symbols-outlined {
+  background-color: #0ea5e9;
+  color: #fff;
 }/*# sourceMappingURL=style.css.map */

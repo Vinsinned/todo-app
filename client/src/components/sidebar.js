@@ -55,7 +55,7 @@ export default function Sidebar() {
 					await getCount(category.name).then((result) => {
 						categoriesArray.push(
 							<li className={`sidebar-category category-info ${setCurrent}`} key={category._id}>
-								<NavLink to="/" style={{textDecoration: 'none'}} className={`${category.name} sidebar__link__category-info sidebar__nav-link`}>
+								<NavLink to={`/category?name=${category.name}`} style={{textDecoration: 'none'}} className={`${category.name} sidebar__link__category-info sidebar__nav-link`}>
 									<span className="category-info__color" style={{backgroundColor: category.color.colorHex}}/>
 									<span className="category-info__title">{category.name}</span>
 								</NavLink>

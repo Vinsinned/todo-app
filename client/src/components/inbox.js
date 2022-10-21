@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { createPath } from "react-router-dom";
+import CreateTodo from "./createTodo";
 
 export default function Inbox() {
 	const [todos, setTodos] = useState([]);
+	const [addForm, setAddForm] = useState([]);
 
 	useEffect(() => {
 		async function getTodos() {
@@ -46,11 +48,6 @@ export default function Inbox() {
 			const getMedium = await mediumPriorities.json();
 			const getLow = await lowPriorities.json();
 			const getNone = await nonePriorities.json();
-
-			const getHighArray = [];
-			const getMediumArray = [];
-			const getLowArray = [];
-			const getNoneArray = [];
 
 			const getArray = [];
 
@@ -114,8 +111,17 @@ export default function Inbox() {
 				)
 			});
 			getMedium.map((todo) => {
+				let categoryColor;
+				const date = Date(todo.date).substring(4, 10);
+				const time = new Date(todo.date).toLocaleTimeString('en-US');
+				if (todo.category !== "") {
+					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
+				}
 				getArray.push(
 					<div className="todo-item" key={todo._id}>
+						<span className="material-symbols-outlined drag-todo">
+							drag_indicator
+						</span>
 						<label className="todo-checkbox">
 							<input type="checkbox" className="medium" onClick={(e) => checkmarkClick(e)}/>
 							<span className="checkmark unclicked checkmark-medium"></span>
@@ -123,13 +129,58 @@ export default function Inbox() {
 								done
 							</span>
 						</label>
-						<h2 className="todo-title">{todo.title}</h2>
+						<div className="todo-information">
+							<div className="todo-header">
+								<h2 className="todo-title">{todo.title}</h2>
+								<div className="todo-options">
+									<span className="material-symbols-outlined">
+										edit_note
+									</span>
+									<span className="material-symbols-outlined">
+										event
+									</span>
+									<span className="material-symbols-outlined">
+										chat_bubble
+									</span>
+								</div>
+								<div className="todo-more">
+									<span className="material-symbols-outlined">
+										more_horiz
+									</span>
+								</div>
+							</div>
+							<div className="todo-information-footer">
+								<div className="todo-deadline">
+									<span className="material-symbols-outlined todo-deadline__calendar">
+										event
+									</span>
+									<h3 className="todo-deadline__heading">
+										{date} {time.substring(0, 4)} {time.substring(7, 10)}
+									</h3>
+								</div>
+								<div className="todo-item-category">
+									<h3 className="todo-item-category__name">
+										{todo.category}
+									</h3>
+									{categoryColor}
+								</div>
+							</div>
+						</div>
 					</div>
 				)
 			});
 			getLow.map((todo) => {
+				let categoryColor;
+				const date = Date(todo.date).substring(4, 10);
+				const time = new Date(todo.date).toLocaleTimeString('en-US');
+				if (todo.category !== "") {
+					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
+				}
 				getArray.push(
 					<div className="todo-item" key={todo._id}>
+						<span className="material-symbols-outlined drag-todo">
+							drag_indicator
+						</span>
 						<label className="todo-checkbox">
 							<input type="checkbox" className="low" onClick={(e) => checkmarkClick(e)}/>
 							<span className="checkmark unclicked checkmark-low"></span>
@@ -137,21 +188,102 @@ export default function Inbox() {
 								done
 							</span>
 						</label>
-						<h2 className="todo-title">{todo.title}</h2>
+						<div className="todo-information">
+							<div className="todo-header">
+								<h2 className="todo-title">{todo.title}</h2>
+								<div className="todo-options">
+									<span className="material-symbols-outlined">
+										edit_note
+									</span>
+									<span className="material-symbols-outlined">
+										event
+									</span>
+									<span className="material-symbols-outlined">
+										chat_bubble
+									</span>
+								</div>
+								<div className="todo-more">
+									<span className="material-symbols-outlined">
+										more_horiz
+									</span>
+								</div>
+							</div>
+							<div className="todo-information-footer">
+								<div className="todo-deadline">
+									<span className="material-symbols-outlined todo-deadline__calendar">
+										event
+									</span>
+									<h3 className="todo-deadline__heading">
+										{date} {time.substring(0, 4)} {time.substring(7, 10)}
+									</h3>
+								</div>
+								<div className="todo-item-category">
+									<h3 className="todo-item-category__name">
+										{todo.category}
+									</h3>
+									{categoryColor}
+								</div>
+							</div>
+						</div>
 					</div>
 				)
 			});
 			getNone.map((todo) => {
+				let categoryColor;
+				const date = Date(todo.date).substring(4, 10);
+				const time = new Date(todo.date).toLocaleTimeString('en-US');
+				if (todo.category !== "") {
+					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
+				}
 				getArray.push(
 					<div className="todo-item" key={todo._id}>
+						<span className="material-symbols-outlined drag-todo">
+							drag_indicator
+						</span>
 						<label className="todo-checkbox">
 							<input type="checkbox" className="none" onClick={(e) => checkmarkClick(e)}/>
 							<span className="checkmark unclicked checkmark-none"></span>
-							<span className="material-symbols-outlined todo-checkmark-sign">
+							<span className="material-symbols-outlined todo-checkmark-sign todo-checkmark-none">
 								done
 							</span>
 						</label>
-						<h2 className="todo-title">{todo.title}</h2>
+						<div className="todo-information">
+							<div className="todo-header">
+								<h2 className="todo-title">{todo.title}</h2>
+								<div className="todo-options">
+									<span className="material-symbols-outlined">
+										edit_note
+									</span>
+									<span className="material-symbols-outlined">
+										event
+									</span>
+									<span className="material-symbols-outlined">
+										chat_bubble
+									</span>
+								</div>
+								<div className="todo-more">
+									<span className="material-symbols-outlined">
+										more_horiz
+									</span>
+								</div>
+							</div>
+							<div className="todo-information-footer">
+								<div className="todo-deadline">
+									<span className="material-symbols-outlined todo-deadline__calendar">
+										event
+									</span>
+									<h3 className="todo-deadline__heading">
+										{date} {time.substring(0, 4)} {time.substring(7, 10)}
+									</h3>
+								</div>
+								<div className="todo-item-category">
+									<h3 className="todo-item-category__name">
+										{todo.category}
+									</h3>
+									{categoryColor}
+								</div>
+							</div>
+						</div>
 					</div>
 				)
 			});
@@ -170,6 +302,10 @@ export default function Inbox() {
 		*/
 	}, [todos.length])
 
+	function renderTodoForm() {
+		setAddForm(<CreateTodo />)
+	}
+
 	return (
 		<section className="inbox-section">
 			<div className="inbox-header">
@@ -182,6 +318,13 @@ export default function Inbox() {
 				</div>
 				{todos}
 			</div>
+			<button className="addTodo" type="button" onClick={() => renderTodoForm()}>
+				<span className="material-symbols-outlined">
+					add
+				</span>
+				<span>Add Todo</span>
+			</button>
+			{addForm}
 
 		</section>
 	)

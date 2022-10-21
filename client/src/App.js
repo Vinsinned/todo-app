@@ -53,6 +53,7 @@ const App = () => {
         <div className="route">
           <Routes>
             <Route exact path="/" element={<Inbox />}/>
+            <Route exact path="/category" element={<Inbox />}/>
           </Routes>
       </div>
     </div>
