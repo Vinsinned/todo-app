@@ -512,7 +512,7 @@ nav .right-nav .profile .profile__image {
 }
 
 .tvdo-page {
-  width: 90%;
+  width: 100%;
   margin: auto;
 }
 .tvdo-page .todo-heading {
@@ -567,14 +567,17 @@ nav .right-nav .profile .profile__image {
   align-items: center;
   justify-content: space-between;
 }
-.tvdo-page .todo-form .main-todo-form .todo-footer .date-group {
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers {
+  display: flex;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .date-group {
   display: flex;
   justify-content: space-between;
   align-items: center;
   justify-content: flex-start;
   padding-bottom: 0.625rem;
 }
-.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .date-button {
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .date-group .date-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -589,23 +592,23 @@ nav .right-nav .profile .profile__image {
   color: #000;
   cursor: pointer;
 }
-.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .date-button:hover {
-  border: 1px solid #212121;
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .date-group .date-button:hover {
+  background-color: #eee;
 }
-.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .date-button .material-symbols-outlined {
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .date-group .date-button .material-symbols-outlined {
   color: #000;
   font-size: 1.2rem;
   margin-right: 0.25rem;
   padding: 0;
   pointer-events: none;
 }
-.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .date-button .material-symbols-outlined:hover {
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .date-group .date-button .material-symbols-outlined:hover {
   background-color: transparent;
 }
-.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .react-datepicker__input-container {
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .date-group .react-datepicker__input-container {
   display: none !important;
 }
-.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker {
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .date-group .react-datepicker__input-container .date-picker {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -620,21 +623,156 @@ nav .right-nav .profile .profile__image {
   color: #000;
   cursor: pointer;
 }
-.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker:hover {
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .date-group .react-datepicker__input-container .date-picker:hover {
   border: 1px solid #212121;
 }
-.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker .material-symbols-outlined {
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .date-group .react-datepicker__input-container .date-picker .material-symbols-outlined {
   color: #000;
   font-size: 1.2rem;
   margin-right: 0.25rem;
   padding: 0;
   pointer-events: none;
 }
-.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .react-datepicker__input-container .date-picker .material-symbols-outlined:hover {
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .date-group .react-datepicker__input-container .date-picker .material-symbols-outlined:hover {
   background-color: transparent;
 }
-.tvdo-page .todo-form .main-todo-form .todo-footer .date-group .date-show {
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .date-group .date-show {
   display: inline-block !important;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-dropdown .current-category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  height: 1.75rem;
+  padding: 0 0.5rem;
+  margin-right: 0.5rem;
+  align-items: center;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-dropdown .current-category:hover {
+  background-color: #eee;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-dropdown .current-category .current-category__inbox-icon {
+  color: #0284c7;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-dropdown .current-category .current-category__color-icon {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 100%;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-dropdown .current-category .material-symbols-outlined {
+  font-size: 1.2rem;
+  margin-right: 0.25rem;
+  padding: 0;
+  pointer-events: none;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-dropdown .current-category .material-symbols-outlined:hover {
+  background-color: transparent;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-dropdown .current-category--clicked {
+  background-color: #eee;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option {
+  cursor: pointer;
+  width: 18.75rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__search {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__search #category-dropdown-search {
+  padding: 0.5rem;
+  width: calc(100% - 1.25rem);
+  border-top-left-radius: 0.19rem;
+  border-top-right-radius: 0.1875rem;
+  border: none;
+  outline: none;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .categories-option__option {
+  background-color: #fff;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .categories-option__option:hover {
+  background-color: #f3f3f3;
+  cursor: pointer;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .category-missing-container {
+  background-color: #fff;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .category-missing-container .category-not-found {
+  font-size: 0.8125rem;
+  padding: 0.25rem 0.625rem;
+  line-height: 1.5rem;
+  color: #555;
+  cursor: default;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .category-missing-container .category-not-found .add-category-text {
+  cursor: text;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .category-missing-container .add-category {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  padding: 0.15rem 0.525rem;
+  cursor: pointer;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .category-missing-container .add-category .material-symbols-outlined {
+  margin-right: 0.4rem;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .category-missing-container .add-category .material-symbols-outlined:hover {
+  background-color: transparent;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .category-missing-container .add-category:hover {
+  background-color: #f3f3f3;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .current-category__check-icon {
+  margin-left: auto;
+  margin-right: 0.25rem;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .current-category__check-icon:hover {
+  background-color: transparent;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .categories-option__inbox {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.825rem;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .categories-option__inbox .current-category__inbox-icon {
+  font-size: 1.2rem;
+  margin-right: 0.25rem;
+  padding: 0;
+  margin-left: 0.2rem;
+  margin-right: 0.5rem;
+  pointer-events: none;
+  color: #0284c7;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .categories-option__color {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.825rem;
+}
+.tvdo-page .todo-form .main-todo-form .todo-footer .todo-modifiers .categories-option .categories-option__list .categories-option__color .categories-option__color-icon {
+  display: block;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin: 0.45rem;
+  margin-right: 0.75rem;
+  border-radius: 50%;
 }
 .tvdo-page .todo-form .main-todo-form .todo-footer .footer-buttons {
   display: flex;
@@ -651,7 +789,7 @@ nav .right-nav .profile .profile__image {
   padding: 0.1rem;
 }
 .tvdo-page .todo-form .main-todo-form .todo-footer .material-symbols-outlined:hover {
-  background-color: #ddd;
+  background-color: #eee;
 }
 .tvdo-page .todo-form .footer-todo-form {
   display: flex;
@@ -708,18 +846,18 @@ nav .right-nav .profile .profile__image {
   color: #43a047 !important;
 }
 .priority-button .priority-clickable-button:hover {
-  background-color: #ddd;
+  background-color: #eee;
 }
 .priority-button .priority-clickable-button:hover .flag-svg {
-  stroke: #ddd;
+  stroke: #eee;
 }
 .priority-button .priority-clickable-button--clicked {
-  background-color: #ddd;
+  background-color: #eee;
   border-radius: 0.25rem;
   padding: 0.1rem;
 }
 .priority-button .priority-clickable-button--clicked .flag-svg {
-  stroke: #ddd;
+  stroke: #eee;
 }
 .priority-button .priority-form {
   width: 17.1875rem;
@@ -777,7 +915,7 @@ nav .right-nav .profile .profile__image {
   top: 0.05rem;
 }
 .tag-button .todo-sell-button--clicked {
-  background-color: #ddd;
+  background-color: #eee;
   border-radius: 0.25rem;
 }
 .tag-button .tag-form {
@@ -1628,6 +1766,10 @@ nav .right-nav .profile .profile__image {
   font-size: 1.44rem;
 }
 
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+  background-color: #fff;
+}
+
 .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
   display: none !important;
 }
@@ -1721,6 +1863,7 @@ nav .right-nav .profile .profile__image {
   width: 85%;
   margin: auto;
   margin-top: 2.25rem;
+  padding-bottom: 5.25rem;
 }
 .inbox-section .inbox-header h1 {
   font-size: 1.25rem;
@@ -1970,6 +2113,56 @@ nav .right-nav .profile .profile__image {
   border-radius: 50%;
 }
 
+#arrow,
+#arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #0284c7;
+}
+
+#arrow {
+  visibility: hidden;
+}
+
+#arrow::before {
+  visibility: visible;
+  content: "";
+  transform: rotate(45deg);
+}
+
+#tooltip[data-popper-placement^=top] > #arrow {
+  bottom: -4px;
+}
+
+#tooltip[data-popper-placement^=bottom] > #arrow {
+  top: -4px;
+}
+
+#tooltip[data-popper-placement^=left] > #arrow {
+  right: -4px;
+}
+
+#tooltip[data-popper-placement^=right] > #arrow {
+  left: -4px;
+}
+
+#tooltip {
+  display: none;
+}
+
+#tooltip[data-show] {
+  display: block;
+}
+
+#categories-popper {
+  display: none;
+}
+
+#categories-popper[data-show] {
+  display: block;
+}
+
 .material-symbols-outlined {
   color: #fff;
   padding: 0.2rem;
@@ -1997,14 +2190,15 @@ nav .right-nav .profile .profile__image {
   width: 100%;
 }
 
-.page-block {
+.page-blocker {
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  cursor: default;
+  display: none;
 }
 
 .tag-blocker {
@@ -2034,6 +2228,10 @@ nav .right-nav .profile .profile__image {
 }
 
 .priority-blocker--show {
+  display: block;
+}
+
+.categories-blocker--show {
   display: block;
 }
 

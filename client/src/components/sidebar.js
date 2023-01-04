@@ -4,9 +4,8 @@ import '../styles/style.css';
 // We import NavLink to utilize the react router.
 import { NavLink } from "react-router-dom";
 
-export default function Sidebar() {
-	//Declare a category state to store all of the categories info
-	const [categories, setCategories] = useState([]);
+export default function Sidebar(props) {
+	const { categories, updateCategories } = props;
 	const [currentTab, setCurrentTab] = useState('inbox');
 
 	//When the category length isn't the same, update it
@@ -73,7 +72,7 @@ export default function Sidebar() {
 			//call iterateCategories, and when it finishes (then function), set the categories
 			//This is done in order to make sure that the promise returns the value, not the promise itself as it is asynchronous
 			iterateCategories(getCategories).then(() => {
-				setCategories(categoriesArray);
+				updateCategories(categoriesArray);
 			});
 		}
 

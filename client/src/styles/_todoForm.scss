@@ -9,7 +9,7 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 }
 
 .tvdo-page {
-	width: 90%;
+	width: 100%;
 	margin: auto;
 	.todo-heading {
 		font-size: 1.25rem;
@@ -58,39 +58,13 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 			.todo-footer {
 				@include flex();
 				justify-content: space-between;
-				.date-group {
-					@include flex();
-					justify-content: flex-start;
-					padding-bottom: 0.625rem;
-					.date-button {
+				.todo-modifiers {
+					display: flex;
+					.date-group {
 						@include flex();
-						background-color: transparent;
-						border: 1px solid #ccc;
-						border-radius: 0.25rem;
-						height: 1.75rem;
-						padding: 0 0.5rem;
-						margin-right: 0.5rem;
-						align-items: center;
-						font-size: 0.8125rem;
-						color: #000;
-						cursor: pointer;
-						&:hover {
-							border: 1px solid #212121;
-						}
-						.material-symbols-outlined {
-							color: #000;
-							font-size: 1.2rem;
-							margin-right: 0.25rem;
-							padding: 0;
-							pointer-events: none;
-							&:hover {
-								background-color: transparent;
-							}
-						}
-					}
-					.react-datepicker__input-container {
-						display: none !important;
-						.date-picker {
+						justify-content: flex-start;
+						padding-bottom: 0.625rem;
+						.date-button {
 							@include flex();
 							background-color: transparent;
 							border: 1px solid #ccc;
@@ -103,7 +77,7 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 							color: #000;
 							cursor: pointer;
 							&:hover {
-								border: 1px solid #212121;
+								background-color: #eee;
 							}
 							.material-symbols-outlined {
 								color: #000;
@@ -116,9 +90,173 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 								}
 							}
 						}
+						.react-datepicker__input-container {
+							display: none !important;
+							.date-picker {
+								@include flex();
+								background-color: transparent;
+								border: 1px solid #ccc;
+								border-radius: 0.25rem;
+								height: 1.75rem;
+								padding: 0 0.5rem;
+								margin-right: 0.5rem;
+								align-items: center;
+								font-size: 0.8125rem;
+								color: #000;
+								cursor: pointer;
+								&:hover {
+									border: 1px solid #212121;
+								}
+								.material-symbols-outlined {
+									color: #000;
+									font-size: 1.2rem;
+									margin-right: 0.25rem;
+									padding: 0;
+									pointer-events: none;
+									&:hover {
+										background-color: transparent;
+									}
+								}
+							}
+						}
+						.date-show {
+							display: inline-block !important;
+						}
 					}
-					.date-show {
-						display: inline-block !important;
+					.categories-dropdown {
+						.current-category {
+							@include flex();
+							background-color: transparent;
+							border: 1px solid #ccc;
+							border-radius: 0.25rem;
+							height: 1.75rem;
+							padding: 0 0.5rem;
+							margin-right: 0.5rem;
+							align-items: center;
+							font-size: 0.8125rem;
+							cursor: pointer;
+							&:hover {
+								background-color: #eee;
+							}
+							.current-category__inbox-icon {
+								color: #0284c7;
+							}
+							.current-category__color-icon {
+								width: 0.5rem;
+								height: 0.5rem;
+								margin-right: 0.5rem;
+								border-radius: 100%;
+							}
+							.material-symbols-outlined {
+								font-size: 1.2rem;
+								margin-right: 0.25rem;
+								padding: 0;
+								pointer-events: none;
+								&:hover {
+									background-color: transparent;
+								}
+							}
+						}
+						.current-category--clicked {
+							background-color: #eee;
+						}
+					}
+					.categories-option {
+						cursor: pointer;
+						width: 18.75rem;
+						border-radius: 0.3125rem;
+						box-shadow: 0 2px 4px 0 rgb(0 0 0 / 8%);
+						.categories-option__search {
+							border-bottom: 1px solid rgba(0,0,0,.1);
+							#category-dropdown-search {
+								padding: 0.5rem;
+								width: calc(100% - 1.25rem);
+								border-top-left-radius: 0.19rem;
+								border-top-right-radius: 0.1875rem;
+								border: none;
+								outline: none;
+							}
+						}
+						.categories-option__list {
+							padding: 0;
+							margin: 0;
+							list-style: none;
+							overflow-y: scroll;
+							overflow-x: hidden;
+							.categories-option__option {
+								background-color: #fff;
+								&:hover {
+									background-color: #f3f3f3;
+									cursor: pointer;
+								}
+							}
+							.category-missing-container {
+								background-color: #fff;
+								.category-not-found {
+									font-size: 0.8125rem;
+									padding: 0.25rem 0.625rem;
+									line-height: 1.5rem;
+									color: #555;
+									cursor: default;
+									.add-category-text {
+										cursor: text;
+									}
+								}
+								.add-category {
+									font-size: 0.8125rem;
+									font-weight: 800;
+									display: flex;
+									align-items: center;
+									padding: 0.15rem 0.525rem;
+									cursor: pointer;
+									.material-symbols-outlined {
+										margin-right: 0.4rem;
+										&:hover {
+											background-color: transparent;
+										}
+									}
+									&:hover {
+										background-color: #f3f3f3;
+									}
+								}
+							}
+							.current-category__check-icon {
+								margin-left: auto;
+								margin-right: 0.25rem;
+								&:hover {
+									background-color: transparent;
+								}
+							}
+							.categories-option__inbox {
+								display: flex;
+								align-items: center;
+								padding: 0.4rem 0.5rem;
+								font-size: 0.825rem;
+								.current-category__inbox-icon {
+									font-size: 1.2rem;
+									margin-right: 0.25rem;
+									padding: 0;
+									margin-left: 0.2rem;
+									margin-right: 0.5rem;
+									pointer-events: none;
+									color: #0284c7;
+								}
+							}
+							.categories-option__color {
+								display: flex;
+								align-items: center;
+								padding: 0.25rem 0.5rem;
+								font-size: 0.825rem;
+								.categories-option__color-icon {
+									display: block;
+									width: 0.6rem;
+									height: 0.6rem;
+									margin: 0.45rem;
+									margin-right: 0.75rem;
+									border-radius: 50%;
+								}
+							}
+						}
 					}
 				}
 				.footer-buttons {
@@ -133,7 +271,7 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 					color: #000;
 					padding: 0.1rem;
 					&:hover {
-						background-color: #ddd;
+						background-color: #eee;
 					}
 				}
 			}

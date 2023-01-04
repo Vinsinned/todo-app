@@ -1,9 +1,20 @@
+import { arrow } from "@popperjs/core";
 import React, { useEffect, useState } from "react";
+import { usePopper } from "react-popper";
 
 export default function Checkboxes(props) {
 	const {tags, todo, updateTodo} = props;
 	//Declare a list state that will contain HTML of all tags
 	const [list, setList] = useState([]);
+	//popper consts
+	const [referenceElement, setReferenceElement] = useState(null);
+	const [popperElement, setPopperElement] = useState(null);
+	const [arrowElement, setArrowElement] = useState(null);
+	const { styles, attributes, update } = usePopper(referenceElement, popperElement, {
+		modifiers: [
+			{ name: 'arrow', options: { element: arrow }}
+		]
+	})
 	
 	//Get tags from database and map the data to create HTML
 	async function allTags() {

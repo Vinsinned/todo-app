@@ -24,18 +24,18 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 			color: #43a047 !important;
 		}
 		&:hover {
-			background-color: #ddd;
+			background-color: #eee;
 			.flag-svg {
-				stroke: #ddd;
+				stroke: #eee;
 			}
 		}
 	}
 	.priority-clickable-button--clicked {
-		background-color: #ddd;
+		background-color: #eee;
 		border-radius: 0.25rem;
 		padding: 0.1rem;
 		.flag-svg {
-			stroke: #ddd;
+			stroke: #eee;
 		}
 	}
 	.priority-form {

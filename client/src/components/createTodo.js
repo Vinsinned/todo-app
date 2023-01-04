@@ -3,9 +3,11 @@ import { useNavigate } from "react-router";
 import Checkboxes from "./tagCheckboxes";
 import Radios from "./priorityRadio";
 import DateForm from "./datePicker";
+import CategoryDropdown from "./categoryDropdown";
 
 //add props that links to category/parent of todo
 export default function CreateTodo(props) {
+	const {categories, updateCategories} = props;
 	const navigate = useNavigate();
 	//Create an array of priorities to be generated into HTML
 	const priorities = ["high", "medium", "low", "none"];
@@ -14,7 +16,7 @@ export default function CreateTodo(props) {
   const [todo, setTodo] = useState({
     title: "",
     description: "",
-    category: "",
+    category: "inbox",
     tag: [],
     status: "Unfinished",
     priority: "none",
@@ -69,7 +71,7 @@ export default function CreateTodo(props) {
       return;
     });
 
-    setTodo({ title: "", description: "", category: "", tag: [],
+    setTodo({ title: "", description: "", category: "inbox", tag: [],
       status: "Unfinished", priority: "none", date: null, time: null,});
     navigate("/");
   }
@@ -114,8 +116,10 @@ export default function CreateTodo(props) {
 						</div>
 					</div>
 					<div className="todo-footer">
-						<DateForm todo={todo} updateTodo={updateTodo} />
-						<p>THIS IS FOR CATEGORY DROPBOX</p>
+						<div className="todo-modifiers">
+							<DateForm todo={todo} updateTodo={updateTodo} />
+							<CategoryDropdown todo={todo} updateTodo={updateTodo} categories={categories} updateCategories={updateCategories} />
+						</div>
 						<div className="footer-buttons">
 							<Checkboxes tags={tags} todo={todo} updateTodo={updateTodo} />
 							<Radios priorities={priorities} todo={todo} updateTodo={updateTodo} />

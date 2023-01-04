@@ -23,6 +23,30 @@ categoryRoutes.route("/categories").get(function (req, res) {
    });
 });
 
+// Search for category
+categoryRoutes.route("/categories/search").get(function (req, res) {
+  let db_connect = dbo.getDb("to_do_app");
+  let myquery = { name: req.query.category }
+  db_connect
+   .collection("categories")
+   .findOne(myquery, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+   });
+ });
+
+  //get a list of categories matching search
+  categoryRoutes.route("/categories/get").get(function (req, res) {
+    let db_connect = dbo.getDb("to_do_app");
+    db_connect
+     .collection("categories")
+     .find({ name: { "$regex": req.query.value, "$options": "i"} })
+     .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+     });
+  });
+
 //get a count of all todos in a category
 categoryRoutes.route("/categories/count").get((req, res) => {
   let db_connect = dbo.getDb("to_do_app");
@@ -41,7 +65,6 @@ categoryRoutes.route("/categories/count").get((req, res) => {
 categoryRoutes.route("/categories/:id").get(function (req, res) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId( req.params.id )};
- console.log('a')
  db_connect
      .collection("categories")
      .findOne(myquery, function (err, result) {
@@ -54,12 +77,12 @@ categoryRoutes.route("/categories/:id").get(function (req, res) {
 categoryRoutes.route("/categories/add").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
-   name: req.body.name,
+   name: req.body.value,
    color: {
-    colorHex: req.body.color.colorHex,
-    colorName: req.body.color.colorName
+    colorHex: "#78909C",
+    colorName: "Regent Gray"
    },
-   favorite: req.body.favorite
+   favorite: false
  };
  db_connect.collection("categories").insertOne(myobj, function (err, res) {
    if (err) throw err;
@@ -80,7 +103,6 @@ categoryRoutes.route("/categories/update/:id").post(function (req, response) {
    .collection("categories")
    .updateOne(myquery, newvalues, function (err, res) {
      if (err) throw err;
-     console.log("1 document updated");
      response.json(res);
    });
 });
@@ -91,8 +113,6 @@ categoryRoutes.route("/categories/:id").delete((req, response) => {
  let myquery = { _id: ObjectId( req.params.id )};
  db_connect.collection("categories").deleteOne(myquery, function (err, obj) {
    if (err) throw err;
-   //Change this to be a notification maybe...
-   console.log("1 document deleted");
    response.json(obj);
  });
 });

@@ -17,11 +17,11 @@ export default function ResponsiveTimePicker(props) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <TimePicker
-          value={value}
-          onChange={(value) => timePickerChange(value)}
-          renderInput={(params) => <TextField {...params} />}
-        />
+      <TimePicker
+        value={value}
+        onChange={(value) => timePickerChange(value)}
+        renderInput={(params) => <TextField {...params} />}
+      />
     </LocalizationProvider>
   );
 }

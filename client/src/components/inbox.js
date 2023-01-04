@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { createPath } from "react-router-dom";
 import CreateTodo from "./createTodo";
 
-export default function Inbox() {
+export default function Inbox(props) {
+	const {categories, updateCategories} = props;
 	const [todos, setTodos] = useState([]);
 	const [addForm, setAddForm] = useState([]);
 
@@ -58,7 +58,7 @@ export default function Inbox() {
 				if (todo.category !== "") {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
 				}
-				getArray.push(
+				return getArray.push(
 					<div className="todo-item" key={todo._id}>
 						<span className="material-symbols-outlined drag-todo">
 							drag_indicator
@@ -117,7 +117,7 @@ export default function Inbox() {
 				if (todo.category !== "") {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
 				}
-				getArray.push(
+				return getArray.push(
 					<div className="todo-item" key={todo._id}>
 						<span className="material-symbols-outlined drag-todo">
 							drag_indicator
@@ -176,7 +176,7 @@ export default function Inbox() {
 				if (todo.category !== "") {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
 				}
-				getArray.push(
+				return getArray.push(
 					<div className="todo-item" key={todo._id}>
 						<span className="material-symbols-outlined drag-todo">
 							drag_indicator
@@ -235,7 +235,7 @@ export default function Inbox() {
 				if (todo.category !== "") {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
 				}
-				getArray.push(
+				return getArray.push(
 					<div className="todo-item" key={todo._id}>
 						<span className="material-symbols-outlined drag-todo">
 							drag_indicator
@@ -303,7 +303,7 @@ export default function Inbox() {
 	}, [todos.length])
 
 	function renderTodoForm() {
-		setAddForm(<CreateTodo />)
+		setAddForm(<CreateTodo category={"inbox"} categories={categories} updateCategories={updateCategories} />)
 	}
 
 	return (

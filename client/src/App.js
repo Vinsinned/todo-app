@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
  
 // We use Route in order to define the different routes of our application
 import { Route, Routes } from "react-router-dom";
@@ -6,13 +6,32 @@ import { Route, Routes } from "react-router-dom";
 // We import all the components we need in our app
 import Navbar from "./components/navbar";
 import Sidebar from "./components/sidebar";
-import TodoList from "./components/todos";
-import CreateTodo from "./components/createTodo";
-import CreateCategory from "./components/createCategory";
+//import TodoList from "./components/todos";
+//import CreateTodo from "./components/createTodo";
+//import CreateCategory from "./components/createCategory";
 import Inbox from "./components/inbox";
  
 const App = () => {
+  const [categories, setCategories] = useState([]);
+
+  function updateCategories(value) {
+    return setCategories(() => {
+      return value;
+    });
+  };
   function mouseClick(e) {
+    if (document.getElementsByClassName('categories-option')[0] || document.getElementsByClassName('categories-option')[0]) {
+      if (e.target.parentElement.classList.contains('categories-option__search') === false && e.target.parentElement.classList.contains('categories-option__list') === false &&
+        e.target.parentElement.classList.contains('categories-option__color') === false && e.target.parentElement.classList.contains('categories-option__option') === false &&
+        e.target.classList.contains('current-category') === false && e.target.classList.contains('current-category__color-icon') === false) {
+        const blocker = document.getElementsByClassName('categories-blocker')[0];
+        blocker.classList.remove('categories-blocker--show');
+        const button = document.getElementsByClassName('current-category')[0];
+        button.classList.remove('current-category--clicked');
+        const dropdown = document.getElementById('categories-popper');
+        dropdown.removeAttribute('data-show');
+      };
+    }
     if (document.getElementsByClassName('search-container')[0] || document.getElementsByClassName('search-container__search-icon')[0]) {
       if (e.target.classList.contains('search-container') || e.target.classList.contains('search-container__search-icon') ||
         e.target.classList.contains('search-container__navbar-search')) {
@@ -49,11 +68,11 @@ const App = () => {
   <main onClick={(e) => mouseClick(e)}>
       <Navbar />
       <div className="main-content">
-        <Sidebar />
+        <Sidebar categories={categories} updateCategories={updateCategories} />
         <div className="route">
           <Routes>
             <Route exact path="/" element={<Inbox />}/>
-            <Route exact path="/category" element={<Inbox />}/>
+            <Route exact path="/category" element={<Inbox categories={categories} updateCategories={updateCategories} />} />
           </Routes>
       </div>
     </div>
