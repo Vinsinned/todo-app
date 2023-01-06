@@ -1,3 +1,5 @@
+import { setRef } from "@mui/material";
+import { style } from "@mui/system";
 import { arrow } from "@popperjs/core";
 import React, { useEffect, useState } from "react";
 import { usePopper } from "react-popper";
@@ -11,10 +13,11 @@ export default function Checkboxes(props) {
 	const [popperElement, setPopperElement] = useState(null);
 	const [arrowElement, setArrowElement] = useState(null);
 	const { styles, attributes, update } = usePopper(referenceElement, popperElement, {
+		placement: 'bottom',
 		modifiers: [
-			{ name: 'arrow', options: { element: arrow }}
+			{ name: 'arrow', options: { element: arrowElement }}
 		]
-	})
+	});
 	
 	//Get tags from database and map the data to create HTML
 	async function allTags() {
@@ -64,7 +67,7 @@ export default function Checkboxes(props) {
 	function tagFormClick(e) {
 		document.getElementsByName(e.target.classList[1])[0].checked = !document.getElementsByName(e.target.classList[1])[0].checked;
 		checkEvent(document.getElementsByName(e.target.classList[1])[0]);
-	}
+	};
 
 	function checkEvent(e) {
 		if (e.checked === true) {
@@ -74,14 +77,15 @@ export default function Checkboxes(props) {
 			//Else, go through the array and remove the tag
 			updateTodo({tag: todo.tag.filter(value => value !== e.value)})
 		}
-	}
+	};
 
 	//When the tag todo button is clicked, add styling and blocker
 	function tagCheckboxClick(e) {
 		document.getElementsByClassName('tag-blocker')[0].classList.add('tag-blocker--show');
 		document.getElementsByClassName('todo-sell-button')[0].classList.add('todo-sell-button--clicked');
 		allTags();
-	}
+		update();
+	};
 	
 	//Add a new tag to the database if the add tag button is clicked
 	async function addTag(name) {
@@ -141,7 +145,7 @@ export default function Checkboxes(props) {
 
 		setList(tagsArray);
 
-	}
+	};
 
 	//When the tag input is changed, update the list state with the results
 	async function tagInputChange(e) {
@@ -202,15 +206,15 @@ export default function Checkboxes(props) {
 		});
 
 		setList(tagsArray);
-	}
+	};
 
 	return (
-		<div className="tag-button">
-			<span className="material-symbols-outlined todo-sell-button" onClick={(e) => tagCheckboxClick(e)}>
+		<div className="tag-container">
+			<span className="material-symbols-outlined todo-sell-button" onClick={(e) => tagCheckboxClick(e)} ref={setReferenceElement}>
 				sell
 			</span>
 			<div className="tag-blocker">
-				<div className="form-group tag-form">
+				<div className="form-group tag-form" ref={setPopperElement} style={styles.popper} {...attributes.popper}>
 					<input type="search" className="tag-search" placeholder="Search Tags" onChange={(e) => tagInputChange(e)} />
 					<div className="tag-list-div">
 					{list}
@@ -218,5 +222,5 @@ export default function Checkboxes(props) {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};

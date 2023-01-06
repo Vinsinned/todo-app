@@ -2,47 +2,46 @@ $font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI",
 Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 "Helvetica Neue", sans-serif;
 
-.priority-button {
-	.priority-clickable-button {
-		cursor: pointer;
-		border-radius: 0.25rem;
-		padding: 0.1rem;
-		.flag-svg {
-			color: #363636;
-			pointer-events: none;
+.priority-container {
+	.priority-button {
+		.priority-clickable-button {
+			cursor: pointer;
+			border-radius: 0.25rem;
+			padding: 0.1rem;
+			.flag-svg {
+				color: #363636;
+				pointer-events: none;
+			}
+			.high-color {
+				fill: #f50057;
+				color: #f50057 !important;
+			}
+			.medium-color {
+				fill: #1976d2;
+				color: #1976d2 !important;
+			}
+			.low-color {
+				fill: #43a047;
+				color: #43a047 !important;
+			}
+			&:hover {
+				background-color: #eee;
+				.flag-svg {
+					stroke: #eee;
+				}
+			}
 		}
-		.high-color {
-			fill: #f50057;
-			color: #f50057 !important;
-		}
-		.medium-color {
-			fill: #1976d2;
-			color: #1976d2 !important;
-		}
-		.low-color {
-			fill: #43a047;
-			color: #43a047 !important;
-		}
-		&:hover {
+		.priority-clickable-button--clicked {
 			background-color: #eee;
+			border-radius: 0.25rem;
+			padding: 0.1rem;
 			.flag-svg {
 				stroke: #eee;
 			}
 		}
 	}
-	.priority-clickable-button--clicked {
-		background-color: #eee;
-		border-radius: 0.25rem;
-		padding: 0.1rem;
-		.flag-svg {
-			stroke: #eee;
-		}
-	}
 	.priority-form {
 		width: 17.1875rem;
-		position: absolute;
-		left: 42.1875rem;
-		top: 13.6rem;
 		ul {
 			padding: 0;
 			margin: 0;

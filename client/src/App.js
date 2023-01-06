@@ -47,7 +47,7 @@ const App = () => {
         document.getElementsByClassName('search-container__search-icon')[0].classList.remove('search-active');
       }
     }
-    if (document.getElementsByClassName('tag-button')[0]) {
+    if (document.getElementsByClassName('tag-container')[0]) {
       if (e.target.className !== 'tag-blocker' && e.target.classList.contains('todo-sell-button') !== true
       && e.target.className !== 'tag-search' && e.target.classList.contains('tag-name-container') !== true
       && e.target.className !== 'tag-not-found' && e.target.classList.contains('tag-form') !== true
@@ -57,7 +57,7 @@ const App = () => {
       document.getElementsByClassName('tag-search')[0].value = "";
       }
     }
-    if (document.getElementsByClassName('priority-button')[0]) {
+    if (document.getElementsByClassName('priority-container')[0]) {
       if (!e.target.classList.contains('priority-clickable-button')) {
         document.getElementsByClassName('priority-clickable-button')[0].classList.remove('priority-clickable-button--clicked');
         document.getElementsByClassName('priority-blocker')[0].classList.remove('priority-blocker--show');
