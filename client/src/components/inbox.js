@@ -32,14 +32,14 @@ export default function Inbox(props) {
 			}
 
 			function checkmarkClick(e) {
-				if (document.getElementsByClassName(`checkmark-${e.target.className}`)[0].classList.contains('unclicked')) {
-					document.getElementsByClassName(`checkmark-${e.target.className}`)[0].classList.remove('unclicked');
-					document.getElementsByClassName(`checkmark-${e.target.className}`)[0].classList.add('clicked');
-					document.getElementsByClassName('todo-checkmark-sign')[0].classList.add('todo-checkmark-sign--checked');
+				if (e.target.nextElementSibling.classList.contains('unclicked')) {
+					e.target.nextElementSibling.classList.remove('unclicked');
+					e.target.nextElementSibling.classList.add('clicked');
+					e.target.parentNode.childNodes[2].classList.add('todo-checkmark-sign--checked');
 				} else {
-					document.getElementsByClassName(`checkmark-${e.target.className}`)[0].classList.add('unclicked');
-					document.getElementsByClassName(`checkmark-${e.target.className}`)[0].classList.remove('clicked');
-					document.getElementsByClassName('todo-checkmark-sign')[0].classList.remove('todo-checkmark-sign--checked');
+					e.target.nextElementSibling.classList.add('unclicked');
+					e.target.nextElementSibling.classList.remove('clicked');
+					e.target.parentNode.childNodes[1].classList.remove('todo-checkmark-sign--checked');
 				}
 			}
 

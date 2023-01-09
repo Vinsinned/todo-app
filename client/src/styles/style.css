@@ -1845,7 +1845,8 @@ nav .right-nav .profile .profile__image {
 
 /* Style the checkmark/indicator */
 .tag-checkbox-container .checkmark:after {
-  left: 4px;
+  left: 5px;
+  top: 2px;
   width: 4px;
   height: 8px;
   border: solid white;
@@ -1908,15 +1909,10 @@ nav .right-nav .profile .profile__image {
   bottom: 2px;
   right: 2px;
   font-size: 1rem;
-  color: transparent !important;
   pointer-events: none;
 }
 .todo-checkmark-sign:hover {
   background-color: transparent !important;
-}
-
-.todo-checkmark-sign--show {
-  color: #fff !important;
 }
 
 /* Hide the browser's default checkbox */
