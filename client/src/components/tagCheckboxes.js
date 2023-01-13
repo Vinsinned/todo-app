@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { usePopper } from "react-popper";
 
 export default function Checkboxes(props) {
-	const {tags, todo, updateTodo} = props;
+	const {tags, todo, updateTodo, updateTodoTag} = props;
 	//Declare a list state that will contain HTML of all tags
 	const [list, setList] = useState([]);
 	//popper consts
@@ -18,6 +18,8 @@ export default function Checkboxes(props) {
 			{ name: 'arrow', options: { element: arrowElement }}
 		]
 	});
+	//this array will be modified and then the new tag array will be updated on the todo state
+	let checked = todo.tag;
 	
 	//Get tags from database and map the data to create HTML
 	async function allTags() {
@@ -71,11 +73,11 @@ export default function Checkboxes(props) {
 
 	function checkEvent(e) {
 		if (e.checked === true) {
-			//If the tag is checked, add the tag to the state
-			updateTodo({ tag: [...todo.tag, e.value] });
+			checked = [...checked, e.value];
+			updateTodo({ tag: checked });
 		} else if (e.checked === false) {
-			//Else, go through the array and remove the tag
-			updateTodo({tag: todo.tag.filter(value => value !== e.value)})
+			checked = checked.filter(tag => tag !== e.value);
+			updateTodo({ tag: checked });
 		}
 	};
 

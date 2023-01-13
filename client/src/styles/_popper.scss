@@ -16,27 +16,27 @@
   transform: rotate(45deg);
 }
 
-#tooltip[data-popper-placement^='top'] > #arrow {
+#time-tooltip[data-popper-placement^='top'] > #arrow {
   bottom: -4px;
 }
 
-#tooltip[data-popper-placement^='bottom'] > #arrow {
+#time-tooltip[data-popper-placement^='bottom'] > #arrow {
   top: -4px;
 }
 
-#tooltip[data-popper-placement^='left'] > #arrow {
+#time-tooltip[data-popper-placement^='left'] > #arrow {
   right: -4px;
 }
 
-#tooltip[data-popper-placement^='right'] > #arrow {
+#time-tooltip[data-popper-placement^='right'] > #arrow {
   left: -4px;
 }
 
-#tooltip {
+#time-tooltip {
   display: none;
 }
 
-#tooltip[data-show] {
+#time-tooltip[data-show] {
   display: block;
 }
 

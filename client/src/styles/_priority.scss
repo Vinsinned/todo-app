@@ -8,6 +8,9 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 			cursor: pointer;
 			border-radius: 0.25rem;
 			padding: 0.1rem;
+			path {
+				stroke: #fff;
+			}
 			.flag-svg {
 				color: #363636;
 				pointer-events: none;

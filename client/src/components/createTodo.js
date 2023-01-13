@@ -50,6 +50,9 @@ export default function CreateTodo(props) {
       return { ...prev, ...value };
     });
   }
+
+	function updateTodoTag(value, method) {
+	}
   
   // This function will handle the submission.
   async function onSubmit(e) {
@@ -73,6 +76,10 @@ export default function CreateTodo(props) {
 
     setTodo({ title: "", description: "", category: "inbox", tag: [],
       status: "Unfinished", priority: "none", date: null, time: null,});
+		const dropdown = document.getElementById('time-tooltip');
+		if (dropdown.hasAttribute('data-show')) {
+			dropdown.removeAttribute('data-show');
+		}
     navigate("/");
   }
 
@@ -111,6 +118,7 @@ export default function CreateTodo(props) {
 								className="form-control todo-description"
 								placeholder="Description"
 								name="description"
+								value={todo.description}
 								onChange={(e) => updateTodo({ description: e.target.value })}
 							/>
 						</div>
@@ -121,7 +129,7 @@ export default function CreateTodo(props) {
 							<CategoryDropdown todo={todo} updateTodo={updateTodo} categories={categories} updateCategories={updateCategories} />
 						</div>
 						<div className="footer-buttons">
-							<Checkboxes tags={tags} todo={todo} updateTodo={updateTodo} />
+							<Checkboxes tags={tags} todo={todo} updateTodo={updateTodo} updateTodoTag={updateTodoTag} />
 							<Radios priorities={priorities} todo={todo} updateTodo={updateTodo} />
 							<div className="question-button">
 								<span className="material-symbols-outlined">

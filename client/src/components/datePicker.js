@@ -37,7 +37,7 @@ export default function DateForm(props) {
 
 	function removeDate() {
 		document.getElementsByClassName('react-datepicker__input-container')[0].classList.remove('date-show');
-		const dropdown = document.getElementById('tooltip');
+		const dropdown = document.getElementById('time-tooltip');
 		if (dropdown.hasAttribute('data-show')) {
 			dropdown.removeAttribute('data-show');
 		}
@@ -94,7 +94,7 @@ export default function DateForm(props) {
 
 	function timeReferenceClick() {
 		update();
-		const dropdown = document.getElementById('tooltip');
+		const dropdown = document.getElementById('time-tooltip');
 		if (dropdown.hasAttribute('data-show') === false) {
 			dropdown.setAttribute('data-show', '');
 		} else {
@@ -110,7 +110,7 @@ export default function DateForm(props) {
 				<div ref={setReferenceElement} className="time-reference" onClick={() => timeReferenceClick()}>
 					{timeButton}
 				</div>
-				<div className="time-picker-container" ref={setPopperElement} style={styles.popper} {...attributes.popper} id="tooltip">
+				<div className="time-picker-container" ref={setPopperElement} style={styles.popper} {...attributes.popper} id="time-tooltip">
 					<div ref={setArrowElement} style={styles.arrow} id="arrow" data-popper-arrow />
 					<ResponsiveTimePicker todo={todo} updateTodo={updateTodo}/>
 				</div>
