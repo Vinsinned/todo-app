@@ -40,9 +40,10 @@ todoRoutes.route("/todos/:id").get(function (req, res) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect
-   .collection("todo")
+   .collection("todos")
    .findOne(myquery, function (err, result) {
      if (err) throw err;
+     console.log(result)
      res.json(result);
    });
 });

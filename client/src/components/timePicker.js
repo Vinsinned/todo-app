@@ -6,14 +6,13 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import '../styles/style.css';
 
 export default function ResponsiveTimePicker(props) {
-  const { todo, updateTodo } = props;
-  const [value, setValue] = React.useState(new Date());
+  const { todo, updateTodo, value, updateValue } = props;
 
   //When the time picker's value is changed, set the state and todo with the new value
   function timePickerChange(value) {
-    setValue(value);
-    updateTodo({ time: value })
-  }
+    updateValue(value);
+    updateTodo({ time: value });
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>

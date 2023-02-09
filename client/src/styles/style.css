@@ -818,6 +818,14 @@ nav .right-nav .profile .profile__image {
   background-color: rgba(219, 76, 63, 0.4);
   cursor: not-allowed;
 }
+.tvdo-page .todo-form .footer-todo-form .edit-todo {
+  color: #fff;
+  background-color: #db4c3f;
+}
+.tvdo-page .todo-form .footer-todo-form .edit-todo:disabled {
+  background-color: rgba(219, 76, 63, 0.4);
+  cursor: not-allowed;
+}
 
 .errorPara {
   display: none;

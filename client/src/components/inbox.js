@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import CreateTodo from "./createTodo";
+import TodoComponent from "./todoComponent";
 
 export default function Inbox(props) {
 	const {categories, updateCategories} = props;
@@ -59,55 +61,7 @@ export default function Inbox(props) {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
 				}
 				return getArray.push(
-					<div className="todo-item" key={todo._id}>
-						<span className="material-symbols-outlined drag-todo">
-							drag_indicator
-						</span>
-						<label className="todo-checkbox">
-							<input type="checkbox" className="high" onClick={(e) => checkmarkClick(e)}/>
-							<span className="checkmark unclicked checkmark-high"></span>
-							<span className="material-symbols-outlined todo-checkmark-sign todo-checkmark-high">
-								done
-							</span>
-						</label>
-						<div className="todo-information">
-							<div className="todo-header">
-								<h2 className="todo-title">{todo.title}</h2>
-								<div className="todo-options">
-									<span className="material-symbols-outlined">
-										edit_note
-									</span>
-									<span className="material-symbols-outlined">
-										event
-									</span>
-									<span className="material-symbols-outlined">
-										chat_bubble
-									</span>
-								</div>
-								<div className="todo-more">
-									<span className="material-symbols-outlined">
-										more_horiz
-									</span>
-								</div>
-							</div>
-							<div className="todo-information-footer">
-								<div className="todo-deadline">
-									<span className="material-symbols-outlined todo-deadline__calendar">
-										event
-									</span>
-									<h3 className="todo-deadline__heading">
-										{date} {time.substring(0, 4)} {time.substring(7, 10)}
-									</h3>
-								</div>
-								<div className="todo-item-category">
-									<h3 className="todo-item-category__name">
-										{todo.category}
-									</h3>
-									{categoryColor}
-								</div>
-							</div>
-						</div>
-					</div>
+					<TodoComponent todo={todo} key={todo._id} categories={categories} updateCategories={updateCategories} />
 				)
 			});
 			getMedium.map((todo) => {
@@ -324,7 +278,7 @@ export default function Inbox(props) {
 				</span>
 				<span>Add Todo</span>
 			</button>
-			{addForm}
+			
 
 		</section>
 	)

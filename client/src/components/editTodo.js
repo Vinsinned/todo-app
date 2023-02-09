@@ -4,25 +4,26 @@ import Checkboxes from "./tagCheckboxes";
 import Radios from "./priorityRadio";
 import DateForm from "./datePicker";
 import CategoryDropdown from "./categoryDropdown";
-
-//add props that links to category/parent of todo
-export default function CreateTodo(props) {
-	const {categories, updateCategories} = props;
+ 
+// We import NavLink to utilize the react router.
+import { NavLink } from "react-router-dom";
+ 
+// Display edit form
+export default function EditTodo(props) {
+	const {todoInfo, categories, updateCategories} = props;
 	const navigate = useNavigate();
 	//Create an array of priorities to be generated into HTML
 	const priorities = ["high", "medium", "low", "none"];
 	//Create a tags state in order to be able to get all tags from database and rerender
   const [tags, setTags] = useState([]);
-  const [todo, setTodo] = useState({
-    title: "",
-    description: "",
-    category: "inbox",
-    tag: [],
-    status: "Unfinished",
-    priority: "none",
-    date: null,
-		time: null
-  });
+	//get todo from props and set them accordingly
+  const [todo, setTodo] = useState(todoInfo);
+	
+	function updateTodo(value) {
+    return setTodo((prev) => {
+      return { ...prev, ...value };
+    });
+  }
 
   //Get list of all tags to use for component
   useEffect(() => {
@@ -50,28 +51,26 @@ export default function CreateTodo(props) {
       return { ...prev, ...value };
     });
   }
-  
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
   
     // When a post request is sent to the create url, we'll add a new record to the database.
-    const newTodo = { ...todo };
+    const editedTodo = { ...todo };
 		
-    await fetch("http://localhost:5000/todos/add", {
+		//DO THIS
+    await fetch(`http://localhost:5000/todos/update/${todo._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newTodo),
+      body: JSON.stringify(editedTodo),
     })
     .catch(error => {
       window.alert(error);
       return;
     });
-
-    setTodo({ title: "", description: "", category: "inbox", tag: [],
-      status: "Unfinished", priority: "none", date: null, time: null,});
+		
 		const dropdown = document.getElementById('time-tooltip');
 		if (dropdown.hasAttribute('data-show')) {
 			dropdown.removeAttribute('data-show');
@@ -82,17 +81,12 @@ export default function CreateTodo(props) {
 	//When the title input is changed, check length to see if the add todo button needs to be disabled
 	function updateTitle(e) {
 		updateTodo({ title: e.target.value });
-		if (e.target.value.length === 0) {
-			document.getElementsByClassName('add-todo')[0].disabled = true;
-		} else {
-			document.getElementsByClassName('add-todo')[0].disabled = false;
-		}
 	}
   
   // This following section will display the todo that takes the input from the user.
   return (
     <div className="tvdo-page">
-      <h1 className="todo-heading">Create New Todo</h1>
+      <h1 className="todo-heading">Edit Todo</h1>
       <form onSubmit={onSubmit} className="todo-form">
 				<div className="main-todo-form">
 					<div className="text-inputs">
@@ -139,8 +133,8 @@ export default function CreateTodo(props) {
 						<button type="button" className="cancel-todo footer-todo-button">
 							Cancel
 						</button>
-						<button type="submit" className="add-todo footer-todo-button" disabled onClick={(e) => onSubmit(e)}>
-							Add Todo
+						<button type="submit" className="edit-todo footer-todo-button" onClick={(e) => onSubmit(e)}>
+							Edit Todo
 						</button>
 				</div>
       </form>

@@ -304,6 +304,14 @@ Roboto, Apple Color Emoji, Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell,
 					cursor: not-allowed;
 				}
 			}
+			.edit-todo {
+				color: #fff;
+				background-color: #db4c3f;
+				&:disabled {
+					background-color: rgba(#db4c3f, 0.4);
+					cursor: not-allowed;
+				}
+			}
 		}
 	}
 }
