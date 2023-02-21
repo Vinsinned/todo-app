@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
  
 // Display edit form
 export default function EditTodo(props) {
-	const {todoInfo, categories, updateCategories} = props;
+	const {todoInfo, categories, updateCategories, edit, updateEdit, currentEdit, updateCurrentEdit} = props;
 	const navigate = useNavigate();
 	//Create an array of priorities to be generated into HTML
 	const priorities = ["high", "medium", "low", "none"];
@@ -70,17 +70,26 @@ export default function EditTodo(props) {
       window.alert(error);
       return;
     });
-		
+
+		//remove time tooltip if it is shown
 		const dropdown = document.getElementById('time-tooltip');
 		if (dropdown.hasAttribute('data-show')) {
 			dropdown.removeAttribute('data-show');
 		}
+		//remove editing state
+		document.getElementById(`${todo._id}`).click();
+		updateCurrentEdit('edited');
     navigate("/");
   }
 
 	//When the title input is changed, check length to see if the add todo button needs to be disabled
 	function updateTitle(e) {
 		updateTodo({ title: e.target.value });
+	}
+
+	//When cancel button is clicked, revert back to 
+	function editCancel(e) {
+		updateEdit();
 	}
   
   // This following section will display the todo that takes the input from the user.
@@ -130,10 +139,10 @@ export default function EditTodo(props) {
 					</div>
 				</div>
 				<div className="footer-todo-form">
-						<button type="button" className="cancel-todo footer-todo-button">
+						<button type="button" className="cancel-todo footer-todo-button" id={todo._id} onClick={(e) => editCancel(e)}>
 							Cancel
 						</button>
-						<button type="submit" className="edit-todo footer-todo-button" onClick={(e) => onSubmit(e)}>
+						<button type="button" className="edit-todo footer-todo-button" onClick={(e) => onSubmit(e)}>
 							Edit Todo
 						</button>
 				</div>

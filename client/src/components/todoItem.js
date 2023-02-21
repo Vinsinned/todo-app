@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router";
  
 export default function TodoItem(props) {
-  const { todo, updateEdit } = props;
+  const { todo, updateEdit, currentEdit, updateCurrentEdit } = props;
   let categoryColor;
   let date = null;
   let time = null;;
@@ -12,7 +12,8 @@ export default function TodoItem(props) {
     date =  new Date(todo.date).toString().substring(3, 10);
   }
   if (todo.time !== null) {
-    time = time = new Date(todo.time).toLocaleTimeString('en-US').substring(0, 4) + " " + new Date(todo.time).toLocaleTimeString('en-US').substring(7, 10);
+    //get the time from todo and convert it into hour and time format
+    time = time = new Date(todo.time).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
   }
   if (todo.category !== "") {
     categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
@@ -28,7 +29,8 @@ export default function TodoItem(props) {
       e.target.parentNode.childNodes[1].classList.remove('todo-checkmark-sign--checked');
     }
   }
-  async function editTodo() {
+  function editTodo(id) {
+    updateCurrentEdit(id);
     updateEdit();
   }
   return (
