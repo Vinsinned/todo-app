@@ -36,11 +36,9 @@ export default function Inbox(props) {
 		removeEdit();
 		if (todosList !== null) {
 			todosList.map(todo => {
-				if (todo.priority === 'high') {
-					//remove the edit state if the edit is not currently being edited
-					if (document.getElementById(`${todo._id}`) && todo._id !== currentEdit) {
-						document.getElementById(`${todo._id}`).click();
-					};
+				//remove the edit state if the edit is not currently being edited
+				if (document.getElementById(`${todo._id}`) && todo._id !== currentEdit) {
+					document.getElementById(`${todo._id}`).click();
 				};
 			});
 		};
@@ -104,7 +102,7 @@ export default function Inbox(props) {
 				}
 				return getArray.push(
 					<TodoComponent todo={todo} key={todo._id} categories={categories} updateCategories={updateCategories} currentEdit={currentEdit} updateCurrentEdit={updateCurrentEdit} />
-				)
+				);
 			});
 			getMedium.map((todo) => {
 				let categoryColor;
@@ -112,58 +110,10 @@ export default function Inbox(props) {
 				const time = new Date(todo.date).toLocaleTimeString('en-US');
 				if (todo.category !== "") {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
-				}
+				};
 				return getArray.push(
-					<div className="todo-item" key={todo._id}>
-						<span className="material-symbols-outlined drag-todo">
-							drag_indicator
-						</span>
-						<label className="todo-checkbox">
-							<input type="checkbox" className="medium" onClick={(e) => checkmarkClick(e)}/>
-							<span className="checkmark unclicked checkmark-medium"></span>
-							<span className="material-symbols-outlined todo-checkmark-sign todo-checkmark-medium">
-								done
-							</span>
-						</label>
-						<div className="todo-information">
-							<div className="todo-header">
-								<h2 className="todo-title">{todo.title}</h2>
-								<div className="todo-options">
-									<span className="material-symbols-outlined">
-										edit_note
-									</span>
-									<span className="material-symbols-outlined">
-										event
-									</span>
-									<span className="material-symbols-outlined">
-										chat_bubble
-									</span>
-								</div>
-								<div className="todo-more">
-									<span className="material-symbols-outlined">
-										more_horiz
-									</span>
-								</div>
-							</div>
-							<div className="todo-information-footer">
-								<div className="todo-deadline">
-									<span className="material-symbols-outlined todo-deadline__calendar">
-										event
-									</span>
-									<h3 className="todo-deadline__heading">
-										{date} {time.substring(0, 4)} {time.substring(7, 10)}
-									</h3>
-								</div>
-								<div className="todo-item-category">
-									<h3 className="todo-item-category__name">
-										{todo.category}
-									</h3>
-									{categoryColor}
-								</div>
-							</div>
-						</div>
-					</div>
-				)
+					<TodoComponent todo={todo} key={todo._id} categories={categories} updateCategories={updateCategories} currentEdit={currentEdit} updateCurrentEdit={updateCurrentEdit} />
+				);
 			});
 			getLow.map((todo) => {
 				let categoryColor;
@@ -171,58 +121,10 @@ export default function Inbox(props) {
 				const time = new Date(todo.date).toLocaleTimeString('en-US');
 				if (todo.category !== "") {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
-				}
+				};
 				return getArray.push(
-					<div className="todo-item" key={todo._id}>
-						<span className="material-symbols-outlined drag-todo">
-							drag_indicator
-						</span>
-						<label className="todo-checkbox">
-							<input type="checkbox" className="low" onClick={(e) => checkmarkClick(e)}/>
-							<span className="checkmark unclicked checkmark-low"></span>
-							<span className="material-symbols-outlined todo-checkmark-sign todo-checkmark-low">
-								done
-							</span>
-						</label>
-						<div className="todo-information">
-							<div className="todo-header">
-								<h2 className="todo-title">{todo.title}</h2>
-								<div className="todo-options">
-									<span className="material-symbols-outlined">
-										edit_note
-									</span>
-									<span className="material-symbols-outlined">
-										event
-									</span>
-									<span className="material-symbols-outlined">
-										chat_bubble
-									</span>
-								</div>
-								<div className="todo-more">
-									<span className="material-symbols-outlined">
-										more_horiz
-									</span>
-								</div>
-							</div>
-							<div className="todo-information-footer">
-								<div className="todo-deadline">
-									<span className="material-symbols-outlined todo-deadline__calendar">
-										event
-									</span>
-									<h3 className="todo-deadline__heading">
-										{date} {time.substring(0, 4)} {time.substring(7, 10)}
-									</h3>
-								</div>
-								<div className="todo-item-category">
-									<h3 className="todo-item-category__name">
-										{todo.category}
-									</h3>
-									{categoryColor}
-								</div>
-							</div>
-						</div>
-					</div>
-				)
+					<TodoComponent todo={todo} key={todo._id} categories={categories} updateCategories={updateCategories} currentEdit={currentEdit} updateCurrentEdit={updateCurrentEdit} />
+				);
 			});
 			getNone.map((todo) => {
 				let categoryColor;
@@ -230,57 +132,9 @@ export default function Inbox(props) {
 				const time = new Date(todo.date).toLocaleTimeString('en-US');
 				if (todo.category !== "") {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
-				}
+				};
 				return getArray.push(
-					<div className="todo-item" key={todo._id}>
-						<span className="material-symbols-outlined drag-todo">
-							drag_indicator
-						</span>
-						<label className="todo-checkbox">
-							<input type="checkbox" className="none" onClick={(e) => checkmarkClick(e)}/>
-							<span className="checkmark unclicked checkmark-none"></span>
-							<span className="material-symbols-outlined todo-checkmark-sign todo-checkmark-none">
-								done
-							</span>
-						</label>
-						<div className="todo-information">
-							<div className="todo-header">
-								<h2 className="todo-title">{todo.title}</h2>
-								<div className="todo-options">
-									<span className="material-symbols-outlined">
-										edit_note
-									</span>
-									<span className="material-symbols-outlined">
-										event
-									</span>
-									<span className="material-symbols-outlined">
-										chat_bubble
-									</span>
-								</div>
-								<div className="todo-more">
-									<span className="material-symbols-outlined">
-										more_horiz
-									</span>
-								</div>
-							</div>
-							<div className="todo-information-footer">
-								<div className="todo-deadline">
-									<span className="material-symbols-outlined todo-deadline__calendar">
-										event
-									</span>
-									<h3 className="todo-deadline__heading">
-										{date} {time.substring(0, 4)} {time.substring(7, 10)}
-									</h3>
-								</div>
-								<div className="todo-item-category">
-									<h3 className="todo-item-category__name">
-										{todo.category}
-									</h3>
-									{categoryColor}
-								</div>
-							</div>
-						</div>
-					</div>
+					<TodoComponent todo={todo} key={todo._id} categories={categories} updateCategories={updateCategories} currentEdit={currentEdit} updateCurrentEdit={updateCurrentEdit} />
 				);
 			});
 
@@ -290,6 +144,8 @@ export default function Inbox(props) {
 		getTodos();
 	}, [currentEdit]);
 
+	//fix: cannot re-edit without refreshing after clicking "edit todo"
+	// of the todos not of high priority
 	useEffect(() => {
 		async function getTodos() {
 			const highPriorities = await fetch(`http://localhost:5000/todos/priority?${new URLSearchParams({priority: 'high'})}`);
@@ -315,18 +171,6 @@ export default function Inbox(props) {
 				return;
 			}
 
-			function checkmarkClick(e) {
-				if (e.target.nextElementSibling.classList.contains('unclicked')) {
-					e.target.nextElementSibling.classList.remove('unclicked');
-					e.target.nextElementSibling.classList.add('clicked');
-					e.target.parentNode.childNodes[2].classList.add('todo-checkmark-sign--checked');
-				} else {
-					e.target.nextElementSibling.classList.add('unclicked');
-					e.target.nextElementSibling.classList.remove('clicked');
-					e.target.parentNode.childNodes[1].classList.remove('todo-checkmark-sign--checked');
-				}
-			}
-
 			//Update the list state with the new results
 			const getHigh = await highPriorities.json();
 			const getMedium = await mediumPriorities.json();
@@ -337,190 +181,38 @@ export default function Inbox(props) {
 
 			getHigh.map((todo) => {
 				let categoryColor;
-				const date = Date(todo.date).substring(4, 10);
-				const time = new Date(todo.date).toLocaleTimeString('en-US');
 				if (todo.category !== "") {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
-				}
+				};
 				return getArray.push(
 					<TodoComponent todo={todo} key={todo._id} categories={categories} updateCategories={updateCategories} currentEdit={currentEdit} updateCurrentEdit={updateCurrentEdit} />
-				)
+				);
 			});
 			getMedium.map((todo) => {
 				let categoryColor;
-				const date = Date(todo.date).substring(4, 10);
-				const time = new Date(todo.date).toLocaleTimeString('en-US');
 				if (todo.category !== "") {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
-				}
+				};
 				return getArray.push(
-					<div className="todo-item" key={todo._id}>
-						<span className="material-symbols-outlined drag-todo">
-							drag_indicator
-						</span>
-						<label className="todo-checkbox">
-							<input type="checkbox" className="medium" onClick={(e) => checkmarkClick(e)}/>
-							<span className="checkmark unclicked checkmark-medium"></span>
-							<span className="material-symbols-outlined todo-checkmark-sign todo-checkmark-medium">
-								done
-							</span>
-						</label>
-						<div className="todo-information">
-							<div className="todo-header">
-								<h2 className="todo-title">{todo.title}</h2>
-								<div className="todo-options">
-									<span className="material-symbols-outlined">
-										edit_note
-									</span>
-									<span className="material-symbols-outlined">
-										event
-									</span>
-									<span className="material-symbols-outlined">
-										chat_bubble
-									</span>
-								</div>
-								<div className="todo-more">
-									<span className="material-symbols-outlined">
-										more_horiz
-									</span>
-								</div>
-							</div>
-							<div className="todo-information-footer">
-								<div className="todo-deadline">
-									<span className="material-symbols-outlined todo-deadline__calendar">
-										event
-									</span>
-									<h3 className="todo-deadline__heading">
-										{date} {time.substring(0, 4)} {time.substring(7, 10)}
-									</h3>
-								</div>
-								<div className="todo-item-category">
-									<h3 className="todo-item-category__name">
-										{todo.category}
-									</h3>
-									{categoryColor}
-								</div>
-							</div>
-						</div>
-					</div>
-				)
+					<TodoComponent todo={todo} key={todo._id} categories={categories} updateCategories={updateCategories} currentEdit={currentEdit} updateCurrentEdit={updateCurrentEdit} />
+				);
 			});
 			getLow.map((todo) => {
 				let categoryColor;
-				const date = Date(todo.date).substring(4, 10);
-				const time = new Date(todo.date).toLocaleTimeString('en-US');
 				if (todo.category !== "") {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
-				}
+				};
 				return getArray.push(
-					<div className="todo-item" key={todo._id}>
-						<span className="material-symbols-outlined drag-todo">
-							drag_indicator
-						</span>
-						<label className="todo-checkbox">
-							<input type="checkbox" className="low" onClick={(e) => checkmarkClick(e)}/>
-							<span className="checkmark unclicked checkmark-low"></span>
-							<span className="material-symbols-outlined todo-checkmark-sign todo-checkmark-low">
-								done
-							</span>
-						</label>
-						<div className="todo-information">
-							<div className="todo-header">
-								<h2 className="todo-title">{todo.title}</h2>
-								<div className="todo-options">
-									<span className="material-symbols-outlined">
-										edit_note
-									</span>
-									<span className="material-symbols-outlined">
-										event
-									</span>
-									<span className="material-symbols-outlined">
-										chat_bubble
-									</span>
-								</div>
-								<div className="todo-more">
-									<span className="material-symbols-outlined">
-										more_horiz
-									</span>
-								</div>
-							</div>
-							<div className="todo-information-footer">
-								<div className="todo-deadline">
-									<span className="material-symbols-outlined todo-deadline__calendar">
-										event
-									</span>
-									<h3 className="todo-deadline__heading">
-										{date} {time.substring(0, 4)} {time.substring(7, 10)}
-									</h3>
-								</div>
-								<div className="todo-item-category">
-									<h3 className="todo-item-category__name">
-										{todo.category}
-									</h3>
-									{categoryColor}
-								</div>
-							</div>
-						</div>
-					</div>
-				)
+					<TodoComponent todo={todo} key={todo._id} categories={categories} updateCategories={updateCategories} currentEdit={currentEdit} updateCurrentEdit={updateCurrentEdit} />
+				);
 			});
 			getNone.map((todo) => {
 				let categoryColor;
-				const date = Date(todo.date).substring(4, 10);
-				const time = new Date(todo.date).toLocaleTimeString('en-US');
 				if (todo.category !== "") {
 					categoryColor = <span className="todo-item-category__color" style={{backgroundColor: "grey"}} />;
-				}
+				};
 				return getArray.push(
-					<div className="todo-item" key={todo._id}>
-						<span className="material-symbols-outlined drag-todo">
-							drag_indicator
-						</span>
-						<label className="todo-checkbox">
-							<input type="checkbox" className="none" onClick={(e) => checkmarkClick(e)}/>
-							<span className="checkmark unclicked checkmark-none"></span>
-							<span className="material-symbols-outlined todo-checkmark-sign todo-checkmark-none">
-								done
-							</span>
-						</label>
-						<div className="todo-information">
-							<div className="todo-header">
-								<h2 className="todo-title">{todo.title}</h2>
-								<div className="todo-options">
-									<span className="material-symbols-outlined">
-										edit_note
-									</span>
-									<span className="material-symbols-outlined">
-										event
-									</span>
-									<span className="material-symbols-outlined">
-										chat_bubble
-									</span>
-								</div>
-								<div className="todo-more">
-									<span className="material-symbols-outlined">
-										more_horiz
-									</span>
-								</div>
-							</div>
-							<div className="todo-information-footer">
-								<div className="todo-deadline">
-									<span className="material-symbols-outlined todo-deadline__calendar">
-										event
-									</span>
-									<h3 className="todo-deadline__heading">
-										{date} {time.substring(0, 4)} {time.substring(7, 10)}
-									</h3>
-								</div>
-								<div className="todo-item-category">
-									<h3 className="todo-item-category__name">
-										{todo.category}
-									</h3>
-									{categoryColor}
-								</div>
-							</div>
-						</div>
-					</div>
+					<TodoComponent todo={todo} key={todo._id} categories={categories} updateCategories={updateCategories} currentEdit={currentEdit} updateCurrentEdit={updateCurrentEdit} />
 				);
 			});
 

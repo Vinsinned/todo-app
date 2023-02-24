@@ -39,9 +39,9 @@ export default function TodoItem(props) {
         drag_indicator
       </span>
       <label className="todo-checkbox">
-        <input type="checkbox" className="high" onClick={(e) => checkmarkClick(e)}/>
-        <span className="checkmark unclicked checkmark-high"></span>
-        <span className="material-symbols-outlined todo-checkmark-sign todo-checkmark-high">
+        <input type="checkbox" className={`${todo.priority}`} onClick={(e) => checkmarkClick(e)}/>
+        <span className={`checkmark unclicked checkmark-${todo.priority}`}></span>
+        <span className={`material-symbols-outlined todo-checkmark-sign todo-checkmark-${todo.priority}`}>
           done
         </span>
       </label>
